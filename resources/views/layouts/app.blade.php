@@ -29,37 +29,34 @@
     
     <div id="app">
 
-        <!-- Navbar -->
+   
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
       <div class="container">
 
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">&#9776;</button>
-          <a class="navbar-brand" href="">
+          <a class="navbar-brand" href="#">
             <img class="logo-dark" src="{{ asset('assets/img/logo/abslt-cast.png') }}" alt="logo" width="60" height="60">
             <img class="logo-light" src="{{ asset('assets/img/logo/abslt-cast.png') }}" alt="logo" width="60" height="60">
           </a>
         </div>
 
         <section class="navbar-mobile">
-          <span class="navbar-divider d-mobile-none"></span>
-
-          <ul class="nav nav-navbar ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Abslt-cart </a>
+          <nav class="nav nav-navbar ml-auto">
+            <a class="nav-link active" href="/">Home</a>
             
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Forum </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Course </a>
-            </li>
+            @auth
+            <a class="nav-link" href="{{ route('series.index') }}">All Series</a>
+            <a class="nav-link" href="{{ route('series.create') }}">Create Series</a>
+            @endauth
+            
+            <a class="nav-link" href="#">Forums</a>
+            <a class="nav-link" href="#">Course</a>
+            
           
-
-
-          </ul>
+          </nav>
         </section>
 
         @if(auth()->check())
@@ -70,6 +67,7 @@
         @endif
 
       </div>
+
     </nav><!-- /.navbar -->
 
         
@@ -80,10 +78,15 @@
         <!-- END Header -->
 
         <main class="main-content">
+            
+            <vue-noty></vue-noty>
 
             @yield('content')
             
         </main>
+    
+
+        
 
         @if(!auth()->check())
             <vue-login></vue-login>

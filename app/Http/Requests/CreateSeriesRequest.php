@@ -2,10 +2,9 @@
 
 namespace Absltcast\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Absltcast\Series;
 
-class CreateSeriesRequest extends FormRequest
+class CreateSeriesRequest extends SeriesRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,18 +32,6 @@ class CreateSeriesRequest extends FormRequest
         ];
     }
 
-    public function uploadSeriesImage()
-    {
-
-        //upload file
-        $uploadedImg = $this->image;
-
-        $this->filename = str_slug($this->title) . "." . $uploadedImg->getClientOriginalExtension();
-
-        $uploadedImg->storePubliclyAs('series', $this->filename);
-
-        return $this;
-    }
 
 
     public function storeSeries()

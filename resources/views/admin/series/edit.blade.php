@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-md-8 mx-auto">
 
-            <h1>Create Series</h1>
+            <h1>Edit Series: {{ $series->title }}</h1>
             <p class="lead-2 opacity-90 mt-6">Create your series</p>
 
           </div>
@@ -33,12 +33,13 @@
     <div class="row gap-y">
       <div class="col">
 
-        <form action="{{ route('series.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('series.update', ['series' => $series->slug]) }}" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
+          {{ method_field('PUT') }}
           
 
           <div class="form-group">
-            <input class="form-control form-control-lg" type="text" name="title" placeholder="Your Series title">
+            <input class="form-control form-control-lg" type="text" name="title" placeholder="Your Series title" value="{{ $series->title }}">
           </div>
 
           <div class="form-group">
@@ -46,10 +47,10 @@
           </div>
 
           <div class="form-group">
-            <textarea class="form-control form-control-lg" name="description" rows="4" placeholder="Your Series description"></textarea>
+            <textarea class="form-control form-control-lg" name="description" rows="4" placeholder="Your Series description">{{ $series->description }}</textarea>
           </div>
 
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Create Series</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Series</button>
         </form>
 
       </div>
