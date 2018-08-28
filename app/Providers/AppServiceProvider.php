@@ -2,7 +2,9 @@
 
 namespace Absltcast\Providers;
 
+use Blade;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Blade::if('hasStartedSeries', function($series){
+            return auth()->user()->hasStartedSeries($series);
+        });
     }
 
     /**

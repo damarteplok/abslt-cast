@@ -9,13 +9,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <form>
-            <ul class="list-group alert alert-danger" v-if="errors.length >0">
-                <li class="list-group-item " v-for="error in errors" :key="errors.indexOf(error)">
-                    
-                    {{ error }}
 
-                </li>
-            </ul>
+            <div v-if="errors.length > 0">
+                <div class="mb-2 alert alert-danger" role="alert" v-for="error in errors" :key="errors.indexOf(error)">
+
+                    {{ error }}
+                    
+                </div>    
+            </div>
+            
+            
           <h4 class="fw-200 text-center">Login</h4>
           <p class="text-center">Sign into your account using your credentials.</p>
           <hr class="w-10">

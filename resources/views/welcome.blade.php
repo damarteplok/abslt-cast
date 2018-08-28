@@ -12,9 +12,11 @@
       <div class="col-md-8 mx-auto">
 
         <h1>The #1 Web Screencast</h1>
-        <p class="lead-2 opacity-90 mt-6">bsolut-cast is screencast how to be and become idol in just 1 day? month? year? :D</p>
+        <p class="lead-2 opacity-90 mt-6">Absolut-cast is screencast how to be and become idol in just 1 day? month? year? :D</p>
         <hr class="w-10 my-7">
-        <a class="btn btn-xl btn-round btn-success px-7 mb-3" href="#">Sign up Now</a>
+        @guest
+        <a class="btn btn-xl btn-round btn-success px-7 mb-3" href="{{ route('register') }}">Sign up Now</a>
+        @endguest
         <a class="btn btn-xl btn-round btn-outline-danger px-7 mb-3" href="#">Browse Now</a>
 
       </div>
@@ -44,12 +46,40 @@
 
             <hr>
 
-            <p class="lead"></p>
+            
             
         </header>
 
         <div class="row gap-y">
             
+            @forelse($series as $s)
+
+            <div class="col-12">
+                <div class="card hover-shadow-7 my-5">
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#"><img class="fit-cover position-absolute h-100" src="{{ asset('storage/' . $s->image_url) }}" alt="..."></a>
+                  </div>
+
+                  <div class="col-md-8">
+                    <div class="p-7">
+                      <h4>{{ $s->title }}</h4>
+                      <p>{{ $s->description }}</p>
+                      <a class="small ls-1" href="{{ route('series', ['series' => $s->slug]) }}">Read More <span class="pl-1">⟶</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @empty
+
+
+            @endforelse
+
+
+
+            
+        
 
         </div>
 

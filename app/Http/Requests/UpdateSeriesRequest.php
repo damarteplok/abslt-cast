@@ -37,6 +37,7 @@ class UpdateSeriesRequest extends SeriesRequest
             $series->image_url = $this->uploadSeriesImage()->filename;
         
         }
+        
         $series->title = $this->title;
         $series->description = $this->description;
         $series->slug = str_slug($this->title);

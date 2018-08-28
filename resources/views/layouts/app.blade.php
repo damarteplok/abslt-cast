@@ -114,6 +114,8 @@
           </div>
         </footer><!-- /.footer -->
 
+        <button class="btn btn-circle btn-primary scroll-top"><i class="fa fa-angle-up"></i></button>
+
     </div>
 
   

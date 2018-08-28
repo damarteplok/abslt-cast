@@ -41,6 +41,13 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'admin' => [
+
+            'web',
+            \Absltcast\Http\Middleware\Administrator::class,
+
+        ],
     ];
 
     /**
@@ -59,6 +66,6 @@ class Kernel extends HttpKernel
         'guest' => \Absltcast\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'admin' => \Absltcast\Http\Middleware\Administrator::class,
+        
     ];
 }

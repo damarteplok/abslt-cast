@@ -2,12 +2,15 @@
 
 namespace Absltcast;
 
+use Redis;
+use Absltcast\Entities\Learning;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Learning;
 
     /**
      * The attributes that are mass assignable.
@@ -42,5 +45,7 @@ class User extends Authenticatable
     {
         return in_array($this->email, config('absltcast.administrators'));
     }
+
+    
 
 }

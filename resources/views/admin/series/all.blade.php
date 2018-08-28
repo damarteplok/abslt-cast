@@ -36,17 +36,17 @@
         <table class="table table-hover">
           <thead>
             <th>Title</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th style="text-align: right;">Edit</th>
+            <th style="text-align: right;">Delete</th>
           </thead>
           <tbody>
             @forelse($series as $s)
               <tr> 
                 <td>{{ $s->title }}</td>
-                <td>
+                <td style="text-align: right;">
                   <a href="{{ route('series.edit', ['series' => $s->slug]) }}" class="btn btn-outline-info btn-sm">Edit</a>
                 </td>
-                <td>
+                <td style="text-align: right;">
                   <a href="" class="btn btn-danger btn-sm">Delete</a>
                 </td>
               </tr>
