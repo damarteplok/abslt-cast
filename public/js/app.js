@@ -51135,12 +51135,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		this.$on('category_created', function (category) {
 
-			window.noty({
-
-				message: 'Category created successfully',
-				type: 'success'
-			});
-
 			_this.categories.push(category);
 		});
 
@@ -51333,7 +51327,7 @@ var Category = function Category(category) {
 			var url = '/admin/category';
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(url, this.category).then(function (resp) {
 				_this2.$parent.$emit('category_created', resp.data);
-				console.log(resp.data);
+
 				$('#modalCategory').modal('hide');
 			}).catch(function (error) {
 				$('#modalCategory').modal('hide');
@@ -51935,11 +51929,13 @@ var Post = function Post(post) {
 			var url = a.concat(this.postId);
 
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.put(url, {
+
 				title: this.post.title,
 				content: this.post.description,
 				tag: this.post.tag,
 				category_id: this.post.category_id,
 				image_url: this.post.image_url
+
 			}).then(function (resp) {
 				$('#modal').modal('hide');
 				_this3.$parent.$emit('post_updated', resp.data);
@@ -52390,12 +52386,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		this.$on('tag_created', function (tag) {
 
-			window.noty({
-
-				message: 'Tag created successfully',
-				type: 'success'
-			});
-
 			_this.tags.push(tag);
 		});
 
@@ -52443,13 +52433,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				__WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete(url).then(function (resp) {
 
 					_this2.tags.splice(key, 1);
-					window.noty({
-						message: 'Tag deleted successfully',
-						type: 'danger'
-					});
 				}).catch(function (error) {
 
-					window.handleErrors(error);
+					console.log(error);
 				});
 			}
 		},
@@ -52594,7 +52580,7 @@ var Tag = function Tag(tag) {
 			var url = '/admin/tag';
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(url, this.tag).then(function (resp) {
 				_this2.$parent.$emit('tag_created', resp.data);
-				console.log(resp.data);
+
 				$('#modal').modal('hide');
 			}).catch(function (error) {
 				$('#modal').modal('hide');

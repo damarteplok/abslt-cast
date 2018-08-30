@@ -164,11 +164,13 @@
 				
 
 				Axios.put(url, {
+					
 					title: this.post.title,
 					content: this.post.description,
 					tag: this.post.tag,
 					category_id: this.post.category_id,
 					image_url: this.post.image_url
+
 				}).then(resp=>{
 					$('#modal').modal('hide')
 					this.$parent.$emit('post_updated', resp.data)

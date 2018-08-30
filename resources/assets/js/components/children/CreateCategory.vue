@@ -73,7 +73,7 @@
 				let url = '/admin/category'
 				Axios.post(url, this.category).then(resp => {
 					this.$parent.$emit('category_created', resp.data)
-					console.log(resp.data)
+					
 					$('#modalCategory').modal('hide')
 				}).catch(error => {
 					$('#modalCategory').modal('hide')

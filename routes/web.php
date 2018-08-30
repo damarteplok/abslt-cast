@@ -23,6 +23,7 @@ Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson
 
 Route::get('/series/{series}', 'FrontendController@series')->name('series');
 
+
 Route::get('/register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
 
 
@@ -32,3 +33,7 @@ Route::get('/logout', function() {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('blog', 'BlogController');
+
+Route::post('/message', 'HomeController@message')->name('message');

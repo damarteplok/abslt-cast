@@ -33,4 +33,8 @@ class HomeController extends Controller
     {
         return view('contact');
     }
+    public function message()
+    {
+        return redirect()->back();
+    }
 }

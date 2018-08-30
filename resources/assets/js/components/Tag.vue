@@ -38,12 +38,6 @@
 
 			this.$on('tag_created', (tag)=> {
 				
-				window.noty({
-
-					message: 'Tag created successfully',
-					type: 'success'
-				})
-
 				this.tags.push(tag)
 			})
 
@@ -94,13 +88,10 @@
 					Axios.delete(url).then(resp=> {
 
 						this.tags.splice(key,1)
-						window.noty({
-							message: 'Tag deleted successfully',
-							type: 'danger'
-						})
+						
 					}).catch(error => {
 
-						window.handleErrors(error)
+						console.log(error)
 						
 					})
 				}

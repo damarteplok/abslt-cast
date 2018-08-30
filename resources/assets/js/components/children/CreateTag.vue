@@ -75,7 +75,7 @@
 				let url = '/admin/tag'
 				Axios.post(url, this.tag).then(resp => {
 					this.$parent.$emit('tag_created', resp.data)
-					console.log(resp.data)
+					
 					$('#modal').modal('hide')
 				}).catch(error => {
 					$('#modal').modal('hide')

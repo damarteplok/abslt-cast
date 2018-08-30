@@ -13,7 +13,7 @@ class post extends Model
 
     public function categories()
     {
-    	return $this->belongsTo(category::class);
+    	return $this->belongsTo(category::class, 'category_id');
     }
 
     public function tags()

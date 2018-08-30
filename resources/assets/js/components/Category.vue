@@ -38,11 +38,6 @@
 
 			this.$on('category_created', (category)=> {
 				
-				window.noty({
-
-					message: 'Category created successfully',
-					type: 'success'
-				})
 
 				this.categories.push(category)
 			})
