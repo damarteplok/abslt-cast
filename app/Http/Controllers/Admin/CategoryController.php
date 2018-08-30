@@ -2,16 +2,15 @@
 
 namespace Absltcast\Http\Controllers\Admin;
 
-
+use Absltcast\category;
 use Absltcast\Http\Controllers\Controller;
-use Absltcast\Http\Requests\CreateSeriesRequest;
-use Absltcast\Http\Requests\UpdateSeriesRequest;
+use Absltcast\Http\Requests\CreateCategoryRequest;
+use Absltcast\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
-use Absltcast\Series;
+use Session;
 
 
-
-class SeriesController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +20,7 @@ class SeriesController extends Controller
     public function index()
     {
         //
-        
-        return view('admin.series.all')->withSeries(Series::all());
+        return view('admin.category.index')->with('categories', category::all());
     }
 
     /**
@@ -33,7 +31,7 @@ class SeriesController extends Controller
     public function create()
     {
         //
-        return view('admin.series.create');
+        
     }
 
     /**
@@ -42,14 +40,10 @@ class SeriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateSeriesRequest $request)
-    {
+    public function store(CreateCategoryRequest $request)
+    {   
 
-        
-       return $request->uploadSeriesImage()
-                ->storeSeries();
-        
-
+        return $request->storeCategory();
     }
 
     /**
@@ -58,11 +52,9 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Series $series)
+    public function show($id)
     {
         //
-        
-        return view('admin.series.index')->withSeries($series);
     }
 
     /**
@@ -71,12 +63,9 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Series $series)
+    public function edit($id)
     {
         //
-
-        
-        return view('admin.series.edit')->withSeries($series);
     }
 
     /**
@@ -86,15 +75,12 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSeriesRequest $request, Series $series)
+    public function update(UpdateCategoryRequest $request,category $category)
     {
         //
+        $category->update($request->all());
+        return $category->fresh();
 
-        $request->updateSeries($series);
-        
-        session()->flash('success', 'Successfully upated Series');
-
-        return redirect()->route('series.index');
     }
 
     /**
@@ -103,15 +89,19 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Series $series)
+    public function destroy($category)
+        
     {
         //
-        foreach($series->lessons as $s){
-            $s->forceDelete();
+        $categories = category::find($category);
+        foreach($categories->posts as $c)
+        {
+            $c->forceDelete();
         }
-        $series->delete();
 
-        return redirect()->back();
+        $categories->delete();
+
+        return response()->json(['status' => 'ok'], 200);
 
     }
 }

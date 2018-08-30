@@ -47,12 +47,11 @@
 
           <div class="divider">Or sign in with</div>
           <div class="text-center">
-            <a class="btn btn-square btn-facebook" href="#"><i class="fa fa-facebook"></i></a>
-            <a class="btn btn-square btn-google" href="#"><i class="fa fa-google"></i></a>
-            <a class="btn btn-square btn-twitter" href="#"><i class="fa fa-twitter"></i></a>
+            <a class="btn btn-primary btn-block" href="#">github</a>
+            
           </div>
 
-          <p class="small-2 text-center mt-5 mb-0">Don't have an account? <a href="#">Create one</a></p>
+          <p class="small-2 text-center mt-5 mb-0">Don't have an account? <a href="/register">Create one</a></p>
 
         </form>
       </div>

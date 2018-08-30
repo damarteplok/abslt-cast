@@ -16,11 +16,11 @@
               </div>
 
               <div class="form-group">
-                <input class="form-control" type="text" v-model="lesson.episode_number" placeholder="Vimeo video">
+                <input class="form-control" type="text" v-model="lesson.video_id" placeholder="Vimeo video">
               </div>
 
               <div class="form-group">
-                <input class="form-control" type="number" v-model="lesson.video_id" placeholder="Episode Number">
+                <input class="form-control" type="number" v-model="lesson.episode_number" placeholder="Episode Number">
               </div>
 
               <div class="form-group">
@@ -96,6 +96,7 @@
 				let url = a.concat(series_by_id,b)
 				Axios.post(url, this.lesson).then(resp => {
 					this.$parent.$emit('lesson_created', resp.data)
+					console.log(resp.data)
 					$('#createLesson').modal('hide')
 				}).catch(error => {
 					$('#createLesson').modal('hide')

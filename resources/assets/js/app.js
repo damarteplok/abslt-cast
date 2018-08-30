@@ -9,7 +9,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-window.events = new Vue()
 
 window.noty = function(notification){
 	window.events.$emit('notification', notification)
@@ -43,6 +42,15 @@ Vue.component('vue-noty', require('./components/Noty.vue'))
 Vue.component('vue-login', require('./components/Login.vue'))
 
 Vue.component('vue-lessons', require('./components/Lessons.vue'))
+
+Vue.component('vue-player', require('./components/Player.vue'))
+
+Vue.component('vue-category', require('./components/Category.vue'))
+
+Vue.component('vue-posts', require('./components/Post.vue'))
+
+Vue.component('vue-tag', require('./components/Tag.vue'))
+
 
 
 const app = new Vue({

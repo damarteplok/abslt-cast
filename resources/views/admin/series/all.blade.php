@@ -42,12 +42,22 @@
           <tbody>
             @forelse($series as $s)
               <tr> 
-                <td>{{ $s->title }}</td>
+                <td>
+                  <a href="{{ route('series.show', ['series' => $s->slug]) }}">
+                  {{ $s->title }}
+                  </a>
+                </td>
                 <td style="text-align: right;">
                   <a href="{{ route('series.edit', ['series' => $s->slug]) }}" class="btn btn-outline-info btn-sm">Edit</a>
                 </td>
                 <td style="text-align: right;">
-                  <a href="" class="btn btn-danger btn-sm">Delete</a>
+                  
+                  <form action="{{ route('series.destroy', ['series' => $s->slug]) }}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                  
                 </td>
               </tr>
             @empty

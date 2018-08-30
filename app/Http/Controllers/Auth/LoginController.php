@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -51,11 +51,12 @@ class LoginController extends Controller
 
         session()->flash('success', 'Succesfully Logged in');
 
-        return response()->json([
+        // return response()->json([
 
-            'status' => 'ok'
+        //     'status' => 'ok'
 
-        ]);
+        // ]);
+        return redirect()->route('index');
     }
 
     /**

@@ -11,17 +11,22 @@ class WatchSeriesController extends Controller
     //
     public function index(Series $series)
     {
-        return redirect()->route('series.watch', 
-        [
-            'series' => $series->slug, 
-            'lesson' => $series->lessons->first()->id
-        ]);
+        
+        if($series->lessons->first() == null)
+        {
+            return redirect()->back();
+        } else {
+            return redirect()->route('series.watch', 
+            [
+                'series' => $series->slug, 
+                'lesson' => $series->lessons->first()->id
+            ]);
+        }
     }
 
     public function showLesson(Series $series, Lesson $lesson)
     {
         
-        dd($lesson);
 
         return view('watch',[
 

@@ -33,6 +33,7 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
+
       <div class="container">
 
         <div class="navbar-left">
@@ -48,8 +49,28 @@
             <a class="nav-link active" href="/">Home</a>
             
             @auth
-            <a class="nav-link" href="{{ route('series.index') }}">All Series</a>
-            <a class="nav-link" href="{{ route('series.create') }}">Create Series</a>
+            <div class="nav-link dropdown open-on-hover">
+              <span class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Blog</span>
+              <div class="dropdown-menu w-200" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 15px; left: 20px; transform: translate3d(0px, 24px, 0px);">
+                <small><a href="{{ route('category.index') }}">Category</a></small>
+                <br>
+                <small><a href="{{ route('tag.index') }}">Tag</a></small>
+                <br>
+                <small><a href="{{ route('post.index') }}">Post</a></small>
+              </div>
+            </div>
+
+
+            <div class="nav-link dropdown open-on-hover">
+              <span class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Cast</span>
+              <div class="dropdown-menu w-200" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 15px; left: 20px; transform: translate3d(0px, 24px, 0px);">
+                <small><a href="{{ route('series.index') }}">All Series</a></small>
+                <br>
+                <small><a href="{{ route('series.create') }}">New Series</a></small>
+              </div>
+            </div>
+
+      
             @endauth
             
             <a class="nav-link" href="#">Forums</a>
@@ -79,7 +100,7 @@
 
         <main class="main-content">
             
-            <vue-noty></vue-noty>
+           
 
             @yield('content')
             
@@ -92,21 +113,43 @@
             <vue-login></vue-login>
         @endif
 
+
         <!-- Footer -->
         <footer class="footer bg-gray">
           <div class="container">
             <div class="row gap-y align-items-center">
 
-
               <div class="col-md-3 text-center text-md-left">
+                
+              </div>
+
+              <div class="col-md-9">
+                <div class="nav nav-bold nav-uppercase justify-content-center justify-content-md-end">
+                  <a class="nav-link" href="#">About</a>
+                  
+                  <a class="nav-link" href="#">Blog</a>
+                  
+                  <a class="nav-link" href="/terms">Terms</a>
+                  <a class="nav-link" href="/contact">Contact</a>
+                </div>
+              </div>
+              
+
+
+              <div class="col-12">
+                <hr class="my-0">
+              </div>
+
+
+              <div class="col-md-5 text-center text-md-left">
                 <small>© 2018 Abslt-cast. All rights reserved.</small>
               </div>
 
-              <div class="col-md-9 text-center text-md-right">
+              <div class="col-md-7 text-center text-md-right">
                 <div class="social social-sm social-hover-bg-brand">
-                  <a class="social-facebook" href="#"><i class="fa fa-facebook"></i></a>
-                  <a class="social-twitter" href="#"><i class="fa fa-twitter"></i></a>
-                  <a class="social-instagram" href="#"><i class="fa fa-instagram"></i></a>
+                  <a class="social-facebook" href="https://www.facebook.com/damar.huda" target="_blank"><i class="fa fa-facebook"></i></a>
+                  <a class="social-twitter" href="https://github.com/damarteplok" target="_blank"><i class="fa fa-github"></i></a>
+                  <a class="social-instagram" href="https://www.instagram.com/fardall/" target="_blank"><i class="fa fa-instagram"></i></a>
                 </div>
               </div>
 
@@ -121,10 +164,12 @@
   
     <!-- Scripts -->
 
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <script src="{{ asset('assets/js/page.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    
 
 
   </body>

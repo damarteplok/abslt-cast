@@ -18,5 +18,10 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "@tinymce/tinymce-vue": "^1.0.8",
+        "@vimeo/player": "^2.6.3",
+        "laravel-vue-pagination": "^1.2.0"
     }
 }

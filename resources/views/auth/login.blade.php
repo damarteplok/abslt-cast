@@ -1,71 +1,90 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <title>Abslt-cast</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                        @csrf
+    <!-- Styles -->
+    <link href="{{ asset('assets/css/page.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+    <link rel="icon" href="{{ asset('ssets/img/favicon.png') }}">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+    <!--  Open Graph Tags -->
+    <meta property="og:title" content="TheSaaS">
+    <meta property="og:description" content="A responsive, professional, and multipurpose SaaS, Software, Startup and WebApp landing template powered by Bootstrap 4.">
+    <meta property="og:image" content="http://thetheme.io/thesaas/assets/img/og-img.jpg">
+    <meta property="og:url" content="http://thetheme.io/thesaas/">
+    <meta name="twitter:card" content="summary_large_image">
+  </head>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+  <body class="layout-centered bg-img" style="background-image: url(../assets/img/bg/4.jpg);">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+    <!-- Main Content -->
+    <main class="main-content">
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+      <div class="bg-white rounded shadow-7 w-400 mw-100 px-6 pt-6 pb-0">
+        <h5 class="mb-7">Sign into your account</h5>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+        @csrf
+          <div class="form-group">
+            <input type="text" class="form-control" name="email" placeholder="Email" required>
+          </div>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+          </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+          <div class="form-group flexbox py-3">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="remember" checked>
+              <label class="custom-control-label">Remember me</label>
             </div>
+
+            <a class="text-muted small-2" href="{{ route('password.request') }}">Forgot password?</a>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-block btn-primary" type="submit">Login</button>
+          </div>
+        </form>
+
+        <div class="divider">Or Login With</div>
+        <div class="text-center mx-auto">
+          <a class="btn btn-circle btn-sm btn-facebook mr-2" href="#"><i class="fa fa-github"></i></a>
+          
         </div>
-    </div>
-</div>
-@endsection
+
+        <hr class="w-30">
+
+        <p class="text-center text-muted small-2">Don't have an account? <a href="/register">Register here</a></p>
+        <div class="divider"><a href="/">Back</a></div>
+      </div>
+
+    </main><!-- /.main-content -->
+
+
+    <!-- Scripts -->
+
+    <script src="{{ asset('assets/js/page.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+
+    <script src="{{ asset('js/app.js') }}"></script>
+
+  </body>
+</html>
+
+
+
+
+
+

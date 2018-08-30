@@ -2,16 +2,13 @@
 
 namespace Absltcast\Http\Controllers\Admin;
 
-
 use Absltcast\Http\Controllers\Controller;
-use Absltcast\Http\Requests\CreateSeriesRequest;
-use Absltcast\Http\Requests\UpdateSeriesRequest;
+use Absltcast\Http\Requests\CreateTagRequest;
+use Absltcast\Http\Requests\UpdateTagRequest;
 use Illuminate\Http\Request;
-use Absltcast\Series;
+use Absltcast\tag;
 
-
-
-class SeriesController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +18,7 @@ class SeriesController extends Controller
     public function index()
     {
         //
-        
-        return view('admin.series.all')->withSeries(Series::all());
+        return view('admin.tag.index')->withTags(tag::all());
     }
 
     /**
@@ -33,7 +29,6 @@ class SeriesController extends Controller
     public function create()
     {
         //
-        return view('admin.series.create');
     }
 
     /**
@@ -42,14 +37,10 @@ class SeriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateSeriesRequest $request)
+    public function store(CreateTagRequest $request)
     {
-
-        
-       return $request->uploadSeriesImage()
-                ->storeSeries();
-        
-
+        //
+        return $request->storeTag();
     }
 
     /**
@@ -58,11 +49,9 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Series $series)
+    public function show($id)
     {
         //
-        
-        return view('admin.series.index')->withSeries($series);
     }
 
     /**
@@ -71,12 +60,9 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Series $series)
+    public function edit($id)
     {
         //
-
-        
-        return view('admin.series.edit')->withSeries($series);
     }
 
     /**
@@ -86,15 +72,11 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSeriesRequest $request, Series $series)
+    public function update(UpdateTagRequest $request, tag $tag)
     {
         //
-
-        $request->updateSeries($series);
-        
-        session()->flash('success', 'Successfully upated Series');
-
-        return redirect()->route('series.index');
+        $tag->update($request->all());
+        return $tag->fresh();
     }
 
     /**
@@ -103,15 +85,11 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Series $series)
+    public function destroy(tag $tag)
     {
         //
-        foreach($series->lessons as $s){
-            $s->forceDelete();
-        }
-        $series->delete();
+        $tag->delete();
 
-        return redirect()->back();
-
+        return response()->json(['status' => 'ok'], 200);
     }
 }

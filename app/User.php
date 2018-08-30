@@ -46,6 +46,11 @@ class User extends Authenticatable
         return in_array($this->email, config('absltcast.administrators'));
     }
 
+    public function posts()
+    {
+        return $this->hasMany(post::class);
+    }
+
     
 
 }

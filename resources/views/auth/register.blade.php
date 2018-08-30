@@ -33,7 +33,7 @@
     <!-- Main Content -->
     <main class="main-content">
 
-      <div class="bg-white rounded shadow-7 w-400 mw-100 p-6">
+      <div class="bg-white rounded shadow-7 w-400 mw-100 px-6 pt-6 pb-0">
         <h5 class="mb-7">Create an account</h5>
 
         <form method="post" action="/register">
@@ -74,7 +74,8 @@
 
         <hr class="w-30">
 
-        <p class="text-center text-muted small-2">Already a member? <a href="user-login.html">Login here</a></p>
+        <p class="text-center text-muted small-2">Already a member? <a href="/login">Login here</a></p>
+        <div class="divider"><a href="/">Back</a></div>
       </div>
 
     </main><!-- /.main-content -->

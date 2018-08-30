@@ -13,11 +13,13 @@
 
 Auth::routes();
 
-Route::get('/', 'FrontendController@welcome');
+Route::get('/', 'FrontendController@welcome')->name('index');
+Route::get('/terms', 'HomeController@terms');
+Route::get('/contact', 'HomeController@contact');
 
 Route::get('/watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
 
-Route::get('/series/{$series}/lesson/{$lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
+Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
 
 Route::get('/series/{series}', 'FrontendController@series')->name('series');
 
