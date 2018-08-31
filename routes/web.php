@@ -34,6 +34,9 @@ Route::get('/logout', function() {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('blog', 'BlogController');
+Route::get('/blog', 'BlogController@index')->name('blog.index');
+Route::get('/blog/{slug}', 'BlogController@post')->name('blog.post');
+Route::get('/blog/{name}/{query}', 'BlogController@search')->name('blog.search');
 
+Route::post('/comment', 'BlogController@commentPost');
 Route::post('/message', 'HomeController@message')->name('message');

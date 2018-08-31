@@ -65,12 +65,7 @@
           </div>
         </form>
 
-        <div class="divider">Or Register With</div>
-        <div class="text-center">
-          <a class="btn btn-circle btn-sm btn-facebook mr-2" href="#"><i class="fa fa-facebook"></i></a>
-          <a class="btn btn-circle btn-sm btn-google mr-2" href="#"><i class="fa fa-google"></i></a>
-          <a class="btn btn-circle btn-sm btn-twitter" href="#"><i class="fa fa-twitter"></i></a>
-        </div>
+        
 
         <hr class="w-30">
 

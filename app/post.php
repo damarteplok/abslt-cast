@@ -25,4 +25,8 @@ class post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function extra()
+    {
+        return $this->hasMany(ExtraInPost::class);
+    }
 }

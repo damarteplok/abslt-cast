@@ -51,6 +51,9 @@ Vue.component('vue-posts', require('./components/Post.vue'))
 
 Vue.component('vue-tag', require('./components/Tag.vue'))
 
+Vue.component('vue-message', require('./components/Message.vue'))
+
+Vue.component('vue-comment', require('./components/Comment.vue'))
 
 
 const app = new Vue({

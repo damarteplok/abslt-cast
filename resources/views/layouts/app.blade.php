@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link href="{{ asset('assets/css/page.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    @yield('css')
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
@@ -32,7 +33,7 @@
    
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-stick-dark" data-navbar="sticky">
 
       <div class="container">
 
@@ -45,43 +46,64 @@
         </div>
 
         <section class="navbar-mobile">
-          <nav class="nav nav-navbar ml-auto">
-            <a class="nav-link active" href="/">Home</a>
-            
+         
+
+          <ul class="nav nav-navbar ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home </a>
+            </li>
+
             @auth
-            <div class="nav-link dropdown open-on-hover">
-              <span class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Blog</span>
-              <div class="dropdown-menu w-200" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 15px; left: 20px; transform: translate3d(0px, 24px, 0px);">
-                <small><a href="{{ route('category.index') }}">Category</a></small>
-                <br>
-                <small><a href="{{ route('tag.index') }}">Tag</a></small>
-                <br>
-                <small><a href="{{ route('post.index') }}">Post</a></small>
-              </div>
-            </div>
 
-
-            <div class="nav-link dropdown open-on-hover">
-              <span class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Cast</span>
-              <div class="dropdown-menu w-200" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 15px; left: 20px; transform: translate3d(0px, 24px, 0px);">
-                <small><a href="{{ route('series.index') }}">All Series</a></small>
-                <br>
-                <small><a href="{{ route('series.create') }}">New Series</a></small>
-              </div>
-            </div>
-
+            <li class="nav-item">
+              <a class="nav-link" href="#">Admin <span class="arrow"></span></a>
+              <ul class="nav">
       
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Blog <span class="arrow"></span></a>
+                  <nav class="nav">
+                    <a class="nav-link" href="{{ route('category.index') }}">Category</a>
+                    <a class="nav-link" href="{{ route('tag.index') }}">Tag</a>
+                    <a class="nav-link" href="{{ route('post.index') }}">Post</a>
+                  </nav>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Cast <span class="arrow"></span></a>
+                  <nav class="nav">
+                    <a class="nav-link" href="{{ route('series.index') }}">Series</a>
+                    <a class="nav-link" href="{{ route('series.create') }}">New Series</a>
+                  </nav>
+                </li>
+
+              </ul>
+            </li>
+
             @endauth
-            
-            <a class="nav-link" href="#">Forums</a>
-            <a class="nav-link" href="#">Course</a>
-            
-          
-          </nav>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('blog.index') }}">Blog </a>
+              
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Forums </a>
+              
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Course </a>
+              
+            </li>
+
+
+          </ul>
         </section>
 
+        
+
         @if(auth()->check())
-        <button class="btn btn-xs btn-round btn-outline-primary">{{ auth()->user()->name }}</button>
+        <a href="/logout" class="btn btn-xs btn-round btn-outline-primary">{{ auth()->user()->name }}</a>
         
         @else
         <a class="btn btn-xs btn-round btn-success" href="#" data-toggle="modal" data-target="#LoginModal">Sign In</a>
@@ -127,7 +149,7 @@
                 <div class="nav nav-bold nav-uppercase justify-content-center justify-content-md-end">
                   <a class="nav-link" href="#">About</a>
                   
-                  <a class="nav-link" href="{{ route('blog.index') }}">Blog</a>
+                  
                   
                   <a class="nav-link" href="/terms">Terms</a>
                   <a class="nav-link" href="/contact">Contact</a>
@@ -163,11 +185,12 @@
 
   
     <!-- Scripts -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('assets/js/page.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    @yield('js')
 
     
 

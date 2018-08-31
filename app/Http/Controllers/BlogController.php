@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Absltcast\post;
 use Absltcast\category;
 use Absltcast\tag;
+use Absltcast\ExtraInPost;
 
 class BlogController extends Controller
 {
@@ -17,75 +18,69 @@ class BlogController extends Controller
     public function index()
     {
         //
+        
         return view('blog.index')->with('posts',post::orderBy('created_at','desc')->simplePaginate(6))
         ->with('categories', category::all())
         ->with('tags', tag::all())
-        ->with('toppost', post::take(4));
+        ->with('toppost', post::orderBy('count','desc')->take(4)->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+
+    public function post($slug)
+    {   
+
+        $post = post::where('slug',$slug)->first();
+
+        $post->count = $post->count + 1;
+        $post->save();
+
+        return view('blog.post')->with('post', $post);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function commentPost(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+            'name' => 'required',
+            'email' => 'required',
+            'message' => 'required'
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $comments = ExtraInPost::create([
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+            'post_id' => $request->post_id
+
+        ]);
+
+        return $comments->fresh();
+    }
+    
+    public function search($name, $query, Request $request)
     {
-        //
+        if($name == 'tag')
+        {
+            $tag = tag::find($query);
+            return view('blog.index')->with('posts',$tag->posts()->orderBy('created_at','desc')->simplePaginate(6))
+            ->with('categories', category::all())
+            ->with('tags', tag::all())
+            ->with('toppost', post::orderBy('count','desc')->take(4)->get());
+
+        }else if($name == 'category'){
+            $category = category::find($query);
+            return view('blog.index')->with('posts',$category->posts()->orderBy('created_at','desc')->simplePaginate(6))
+            ->with('categories', category::all())
+            ->with('tags', tag::all())
+            ->with('toppost', post::orderBy('count','desc')->take(4)->get());
+        }else{
+            $name = $request->s;
+            return view('blog.index')->with('posts', post::where('title','like', '%' . $name . '%')->simplePaginate(6))
+            ->with('categories', category::all())
+            ->with('tags', tag::all())
+            ->with('toppost', post::orderBy('count','desc')->take(4)->get());
+        }
     }
 }

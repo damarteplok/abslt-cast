@@ -4,14 +4,13 @@ namespace Absltcast;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tag extends Model
+class ExtraInPost extends Model
 {
     //
     protected $guarded = [];
-	
 
     public function posts()
-    {	
-    	return $this->belongsToMany(post::class);
+    {
+    	return $this->belongsTo(post::class);
     }
 }

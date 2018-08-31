@@ -154,7 +154,7 @@ class PostController extends Controller
        $image->save();
 
         
-       $image->tags()->attach($request->tag);
+       $image->tags()->sync($request->tag);
 
        return $image;
 

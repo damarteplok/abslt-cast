@@ -38,10 +38,10 @@
 			@foreach($posts as $p)
             <div class="col-md-6">
               <div class="card border hover-shadow-6 mb-6">
-                <a href="#"><img class="card-img-top" src="{{ asset('storage/series/' . $p->image_url) }}" alt="{{ $p->title }}"></a>
+                <a href="{{ route('blog.post', ['slug' => $p->slug]) }}"><img class="card-img-top" src="{{ asset('storage/series/' . $p->image_url) }}" alt="{{ $p->title }}"></a>
                 <div class="p-6 text-center">
-                  <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">{{ $p->categories->title}}</a></p>
-                  <h5 class="mb-0"><a class="text-dark" href="#">{{ $p->title }}</a></h5>
+                  <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="{{ route('blog.search', ['name' => 'category', 'query' => $p->categories->id]) }}">{{ $p->categories->title}}</a></p>
+                  <h5 class="mb-0"><a class="text-dark" href="{{ route('blog.post', ['slug' => $p->slug]) }}">{{ $p->title }}</a></h5>
                 </div>
               </div>
             </div>
@@ -58,61 +58,11 @@
 
       
         </div>
+		
+		@include('layouts.side-blog')
 
 
-
-        <div class="col-md-4 col-xl-3">
-          <div class="sidebar px-4 py-md-0">
-
-            <h6 class="sidebar-title">Search</h6>
-            <form class="input-group" target="#" method="GET">
-              <input type="text" class="form-control" name="s" placeholder="Search">
-              <div class="input-group-addon">
-                <span class="input-group-text"><i class="ti-search"></i></span>
-              </div>
-            </form>
-
-            <hr>
-
-            <h6 class="sidebar-title">Categories</h6>
-            <div class="row link-color-default fs-14 lh-24">
-              @foreach($categories as $c)
-              <div class="col-6">
-              	<a href="#">{{ $c->title }}</a>
-              </div>
-              @endforeach
-            </div>
-
-            <hr>
-
-            <h6 class="sidebar-title">Top posts</h6>
-
-            @foreach($toppost as $t)
-            <a class="media text-default align-items-center mb-5" href="blog-single.html">
-              <img class="rounded w-65px mr-4" src="{{ asset('storage/public/series/' . $t->image_url) }}">
-              <p class="media-body small-2 lh-4 mb-0">{!! mb_substr($t->content,0,50) !!}</p>
-            </a>
-			@endforeach
-            
-
-            <hr>
-
-            <h6 class="sidebar-title">Tags</h6>
-            <div class="gap-multiline-items-1">
-            @foreach($tags as $t)
-              <a class="badge badge-secondary" href="#">{{ $t->tag }}
-              </a>
-            @endforeach
-            </div>
-			
-            <hr>
-
-            <h6 class="sidebar-title">About</h6>
-            <p class="small-3">The Absolutcast is Id consectetur excepteur labore ut esse nulla laboris quis nulla consectetur.</p>
-
-
-          </div>
-        </div>
+        
 
       </div>
     </div>

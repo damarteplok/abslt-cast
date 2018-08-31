@@ -41,45 +41,39 @@
 
         <header class="section-header">
 
-            <small>Lesson</small>
-            <h2>Featured Screencasts</h2>
+            <small>Lastest Article</small>
+            <h2>Featured Blog</h2>
 
             <hr>
-
-            
-            
+  
         </header>
 
         <div class="row gap-y">
-            
-            @forelse($series as $s)
 
-            <div class="col-12">
-                <div class="card hover-shadow-7 my-5">
-                <div class="row">
-                  <div class="col-md-4">
-                    <a href="#"><img class="fit-cover position-absolute h-100" src="{{ asset('storage/' . $s->image_url) }}" alt="..."></a>
-                  </div>
 
-                  <div class="col-md-8">
-                    <div class="p-7">
-                      <h4>{{ $s->title }}</h4>
-                      <p>{{ $s->description }}</p>
-                      <a class="small ls-1" href="{{ route('series', ['series' => $s->slug]) }}">Read More <span class="pl-1">⟶</span></a>
-                    </div>
-                  </div>
+          @foreach($posts as $p)
+
+          <div class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
+            <a class="card shadow-1 hover-shadow-7" href="demo/bootstrap.html" target="_blank">
+              <div class="card-img-top">
+                <img src="{{ asset('/storage/series/' . $p->image_url) }}" alt="Card image cap">
+                <div class="badges">
+                  
+                  <a class="badge badge-info" href="{{ route('blog.search', ['name' => 'category', 'query' => $p->categories->id]) }}">{{ $p->categories->title }}</a>
+                  
                 </div>
               </div>
-            </div>
-            @empty
+              <div class="card-body">
+                <h5 class="card-title">{{ $p->title }}</h5>
+                {!! mb_substr($p->content, 0, 100) !!}
+                <a class="fs-12 fw-600" href="{{ route('blog.post', ['slug' => $p->slug]) }}">Read more <i class="fa fa-angle-right pl-1"></i></a>
+              </div>
+            </a>
+          </div>
 
+          @endforeach
 
-            @endforelse
-
-
-
-            
-        
+   
 
         </div>
 
@@ -89,4 +83,76 @@
 </section>
 
 
+<section class="section text-white bg-primary">
+  <div class="container">
+    <header class="section-header">
+      <small>Lastest Lesson</small>
+      <h2>Featured Screencast</h2>
+     
+    </header>
+
+    
+    
+   <div class="owl-carousel">
+
+    @foreach($series as $s)
+    
+      <div class="card overflow-hidden">
+        <div class="card-body">
+          <h5 class="card-title" style="color: #000;">{{ $s->title }}</h5>
+          <p style="color: #000;">{{ $s->description }}</p>
+        </div>
+
+        <a class="card-hover bg-img" href="{{ route('series', ['series' => $s->slug]) }}" data-animation="slide-left" style="background-image: url({{ asset('storage/' . $s->image_url) }});">
+        </a>
+      </div>
+
+    @endforeach
+    
+    </div>
+
+</div>
+
+</section>
+        
+
+
+
 @stop
+
+@section('css')
+
+<link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/owl.theme.default.min.css') }}">
+
+
+@stop
+
+
+@section('js')
+
+<script src="{{ asset('/js/owl.carousel.js') }}"></script>
+
+<script>
+  
+  $('.owl-carousel').owlCarousel({
+      autoplay:true,
+      loop:true,
+      margin:10,
+      nav:true,
+      responsive:{
+          0:{
+              items:1
+          },
+          600:{
+              items:3
+          },
+          1000:{
+              items:4
+          }
+      }
+  })
+</script>
+
+@stop
+

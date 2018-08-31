@@ -118,28 +118,7 @@
                         this.errors.push('something went wrong')
                     }
                 })
-            },
-
-            attemptLogin2 ()
-            
-            {
-                this.loading = true
-
-                axios.post('/login', {
-
-                    email: this.email,
-                    password: this.password,
-                    remember: this.remember
-
-                }).then(resp => {
-
-                    location.reload()
-
-                }).catch(error => {
-                    this.loading = false
-                    console.log(error)
-                })
-            },
+            }
 
 
         },
