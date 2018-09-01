@@ -13,30 +13,23 @@
 
 Auth::routes();
 
-Route::get('/', 'FrontendController@welcome')->name('index');
-Route::get('/terms', 'HomeController@terms');
-Route::get('/contact', 'HomeController@contact');
-
-Route::get('/watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
-
-Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
-
-Route::get('/series/{series}', 'FrontendController@series')->name('series');
-
-
 Route::get('/register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
-
-
 Route::get('/logout', function() {
 	auth()->logout(); return redirect('/');
 });
 
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/blog', 'BlogController@index')->name('blog.index');
 Route::get('/blog/{slug}', 'BlogController@post')->name('blog.post');
 Route::get('/blog/{name}/{query}', 'BlogController@search')->name('blog.search');
-
 Route::post('/comment', 'BlogController@commentPost');
-Route::post('/message', 'HomeController@message')->name('message');
+
+Route::get('/', 'FrontendController@welcome')->name('index');
+Route::post('/message', 'FrontendController@message')->name('message');
+Route::get('/terms', 'FrontendController@terms');
+Route::get('/contact', 'FrontendController@contact');
+Route::get('/portfolio', 'FrontendController@portfolioListing');
+Route::get('/portfolio/{slug}', 'FrontendController@portfolioSingle')->name('portfolio.single');
+
+Route::get('/series/{series}', 'FrontendController@series')->name('series');
+Route::get('/watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
+Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');

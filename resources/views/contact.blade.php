@@ -49,9 +49,9 @@
               <h6>Follow Us</h6>
               <div class="social social-sm social-inverse">
                 
-                <a class="social-facebook" href="facebook.com/damar.huda" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a class="social-instagram" href="instagram/fardall" target="_blank"><i class="fa fa-instagram"></i></a>
-                <a class="social-github" href="github.com/damarteplok" target="_blank"><i class="fa fa-github"></i></a>
+                <a class="social-facebook" href="https://facebook.com/damar.huda" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a class="social-instagram" href="https://instagram/fardall" target="_blank"><i class="fa fa-instagram"></i></a>
+                <a class="social-github" href="https://github.com/damarteplok" target="_blank"><i class="fa fa-github"></i></a>
               </div>
             </div>
 

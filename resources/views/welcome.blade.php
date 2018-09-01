@@ -93,7 +93,7 @@
 
     
     
-   <div class="owl-carousel">
+    <div class="owl-carousel">
 
     @foreach($series as $s)
     
@@ -132,11 +132,14 @@
 @section('js')
 
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('/js/owl.autoplay.js') }}"></script>
 
 <script>
   
   $('.owl-carousel').owlCarousel({
       autoplay:true,
+      autoplayTimeout:1000,
+      autoplayHoverPause:true,
       loop:true,
       margin:10,
       nav:true,

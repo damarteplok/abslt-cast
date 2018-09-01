@@ -65,31 +65,15 @@ class SeriesController extends Controller
         return view('admin.series.index')->withSeries($series);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Series $series)
     {
-        //
-
-        
+  
         return view('admin.series.edit')->withSeries($series);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateSeriesRequest $request, Series $series)
     {
-        //
-
+        
         $request->updateSeries($series);
         
         session()->flash('success', 'Successfully upated Series');
@@ -97,15 +81,8 @@ class SeriesController extends Controller
         return redirect()->route('series.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Series $series)
     {
-        //
         foreach($series->lessons as $s){
             $s->forceDelete();
         }

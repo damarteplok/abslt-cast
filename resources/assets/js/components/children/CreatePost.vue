@@ -14,45 +14,43 @@
 
               
               <div class="form-group">
-                <input class="form-control" type="text" v-model="post.title" placeholder="Title">
+                <input class="form-control" type="text" v-model="title" placeholder="Title">
               </div>
 
               <div class="form-group">
-                <input type="file" v-on:change="onImageChange" class="form-control">
+              	<div class="row">
+              		<div class="col-3" v-if="image_url">
+		              <img :src="image_url" class="img-responsive" height="70" width="90" alt="Image">
+		           </div>
+		           <div class="col-9 ml-auto">
+		           	<input type="file" v-on:change="onImageChange" class="form-control">
+		           </div>
+              	</div>
+                
               </div>
 
               <div class="form-group">
-              	<select v-model="post.category_id" id="category" class="form-control">
+              	<select v-model="category_id" id="category" class="form-control">
               		<option v-for="category in categories" v-bind:value="category.id">
               			{{ category.title }}
               		</option>
               	</select>
               </div>
 
-              <!-- <div class="form-group">
-              	<select v-model="post.tag" id="category" class="form-control">
-              		<option v-for="t in tags" v-bind:value="[1,2]">
-              			{{ t.tag }}
-              		</option>
-              	</select>
-              </div> -->
-
 
 			  <div class="d-flex flex-wrap">              
 	              <div class="checkbox" v-for="t in tags">
-	              	<label><input type="checkbox" v-bind:value="t.id" v-model="post.tag">{{ t.tag }}</label>
+	              	<label><input type="checkbox" v-bind:value="t.id" v-model="tag">{{ t.tag }}</label>
 	              </div>
           	  </div>
 			  
               
              
               <div class="form-group">
-              	<textarea cols="30" rows="10" class="form-control" v-model="post.description"></textarea>
+              	<textarea cols="30" rows="10" class="form-control" v-model="description"></textarea>
               </div>
 
-              <div class="col-md-3" v-if="post.image_url">
-	              <img :src="post.image_url" class="img-responsive" height="70" width="90">
-	           </div>
+              
 
               
 
@@ -75,17 +73,6 @@
 
 	import Axios from 'axios'
 
-	class Post {
-		constructor(post){
-			this.title = post.title || ''
-			this.category_id = post.category_id || ''
-			this.tag = []
-			this.description = post.description || ''
-			this.image_url = ''
-			
-		}
-	}
-
 	
 	export default {
 		mounted() {
@@ -94,7 +81,12 @@
 				this.categories = categories
 				this.tags = tags
 				this.editing = false
-				this.post = new Post({})
+				
+				this.title = ''
+				this.description = ''
+				this.tag = []
+				this.category_id = ''
+				this.image_url = ''
 				$('#modal').modal()
 			})
 
@@ -103,7 +95,11 @@
 				this.editing = true
 				this.categories = categories
 				this.tags = tags
-				this.post = new Post(post)
+				this.title = post.title
+				this.description = post.description
+				this.tag = []
+				this.category_id = ''
+				this.image_url = ''
 				this.postId = post.id
 				$('#modal').modal()
 			})
@@ -111,7 +107,12 @@
 
 		data() {
 			return {
-				post: {},
+		
+				title: '',
+				description: '',
+				tag: [],
+				category_id: '',
+				image_url: '',
 				categories:{},
 				tags: {},
 				editing: false,
@@ -131,7 +132,7 @@
                 let reader = new FileReader();
                 let vm = this;
                 reader.onload = (e) => {
-                    vm.post.image_url = e.target.result;
+                    vm.image_url = e.target.result;
                 };
                 reader.readAsDataURL(file);
             },
@@ -140,14 +141,15 @@
 
 				Axios.post(url, {
 
-					title: this.post.title,
-					content: this.post.description,
-					tag: this.post.tag,
-					category_id: this.post.category_id,
-					image_url: this.post.image_url
+					title: this.title,
+					description: this.description,
+					tag: this.tag,
+					category_id: this.category_id,
+					image_url: this.image_url
 
 				}).then(resp => {
 					this.$parent.$emit('post_created', resp.data)
+					
 					$('#modal').modal('hide')
 				}).catch(error => {
 					console.log(error)
@@ -165,11 +167,11 @@
 
 				Axios.put(url, {
 					
-					title: this.post.title,
-					content: this.post.description,
-					tag: this.post.tag,
-					category_id: this.post.category_id,
-					image_url: this.post.image_url
+					title: this.title,
+					description: this.description,
+					tag: this.tag,
+					category_id: this.category_id,
+					image_url: this.image_url
 
 				}).then(resp=>{
 					$('#modal').modal('hide')

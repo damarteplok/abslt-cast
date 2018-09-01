@@ -51748,10 +51748,6 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-//
-//
 //
 //
 //
@@ -51826,16 +51822,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-
-var Post = function Post(post) {
-	_classCallCheck(this, Post);
-
-	this.title = post.title || '';
-	this.category_id = post.category_id || '';
-	this.tag = [];
-	this.description = post.description || '';
-	this.image_url = '';
-};
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	mounted: function mounted() {
@@ -51845,7 +51831,12 @@ var Post = function Post(post) {
 			_this.categories = categories;
 			_this.tags = tags;
 			_this.editing = false;
-			_this.post = new Post({});
+
+			_this.title = '';
+			_this.description = '';
+			_this.tag = [];
+			_this.category_id = '';
+			_this.image_url = '';
 			$('#modal').modal();
 		});
 
@@ -51853,14 +51844,23 @@ var Post = function Post(post) {
 			_this.editing = true;
 			_this.categories = categories;
 			_this.tags = tags;
-			_this.post = new Post(post);
+			_this.title = post.title;
+			_this.description = post.description;
+			_this.tag = [];
+			_this.category_id = '';
+			_this.image_url = '';
 			_this.postId = post.id;
 			$('#modal').modal();
 		});
 	},
 	data: function data() {
 		return {
-			post: {},
+
+			title: '',
+			description: '',
+			tag: [],
+			category_id: '',
+			image_url: '',
 			categories: {},
 			tags: {},
 			editing: false,
@@ -51880,7 +51880,7 @@ var Post = function Post(post) {
 			var reader = new FileReader();
 			var vm = this;
 			reader.onload = function (e) {
-				vm.post.image_url = e.target.result;
+				vm.image_url = e.target.result;
 			};
 			reader.readAsDataURL(file);
 		},
@@ -51891,14 +51891,15 @@ var Post = function Post(post) {
 
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(url, {
 
-				title: this.post.title,
-				content: this.post.description,
-				tag: this.post.tag,
-				category_id: this.post.category_id,
-				image_url: this.post.image_url
+				title: this.title,
+				description: this.description,
+				tag: this.tag,
+				category_id: this.category_id,
+				image_url: this.image_url
 
 			}).then(function (resp) {
 				_this2.$parent.$emit('post_created', resp.data);
+
 				$('#modal').modal('hide');
 			}).catch(function (error) {
 				console.log(error);
@@ -51915,11 +51916,11 @@ var Post = function Post(post) {
 
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.put(url, {
 
-				title: this.post.title,
-				content: this.post.description,
-				tag: this.post.tag,
-				category_id: this.post.category_id,
-				image_url: this.post.image_url
+				title: this.title,
+				description: this.description,
+				tag: this.tag,
+				category_id: this.category_id,
+				image_url: this.image_url
 
 			}).then(function (resp) {
 				$('#modal').modal('hide');
@@ -51963,30 +51964,48 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.post.title,
-                      expression: "post.title"
+                      value: _vm.title,
+                      expression: "title"
                     }
                   ],
                   staticClass: "form-control",
                   attrs: { type: "text", placeholder: "Title" },
-                  domProps: { value: _vm.post.title },
+                  domProps: { value: _vm.title },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.post, "title", $event.target.value)
+                      _vm.title = $event.target.value
                     }
                   }
                 })
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "file" },
-                  on: { change: _vm.onImageChange }
-                })
+                _c("div", { staticClass: "row" }, [
+                  _vm.image_url
+                    ? _c("div", { staticClass: "col-3" }, [
+                        _c("img", {
+                          staticClass: "img-responsive",
+                          attrs: {
+                            src: _vm.image_url,
+                            height: "70",
+                            width: "90",
+                            alt: "Image"
+                          }
+                        })
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-9 ml-auto" }, [
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "file" },
+                      on: { change: _vm.onImageChange }
+                    })
+                  ])
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
@@ -51997,8 +52016,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.post.category_id,
-                        expression: "post.category_id"
+                        value: _vm.category_id,
+                        expression: "category_id"
                       }
                     ],
                     staticClass: "form-control",
@@ -52013,13 +52032,9 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.$set(
-                          _vm.post,
-                          "category_id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
+                        _vm.category_id = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
                       }
                     }
                   },
@@ -52046,38 +52061,35 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.post.tag,
-                            expression: "post.tag"
+                            value: _vm.tag,
+                            expression: "tag"
                           }
                         ],
                         attrs: { type: "checkbox" },
                         domProps: {
                           value: t.id,
-                          checked: Array.isArray(_vm.post.tag)
-                            ? _vm._i(_vm.post.tag, t.id) > -1
-                            : _vm.post.tag
+                          checked: Array.isArray(_vm.tag)
+                            ? _vm._i(_vm.tag, t.id) > -1
+                            : _vm.tag
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.post.tag,
+                            var $$a = _vm.tag,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
                               var $$v = t.id,
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(_vm.post, "tag", $$a.concat([$$v]))
+                                $$i < 0 && (_vm.tag = $$a.concat([$$v]))
                               } else {
                                 $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.post,
-                                    "tag",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
+                                  (_vm.tag = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
                               }
                             } else {
-                              _vm.$set(_vm.post, "tag", $$c)
+                              _vm.tag = $$c
                             }
                           }
                         }
@@ -52094,36 +52106,23 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.post.description,
-                      expression: "post.description"
+                      value: _vm.description,
+                      expression: "description"
                     }
                   ],
                   staticClass: "form-control",
                   attrs: { cols: "30", rows: "10" },
-                  domProps: { value: _vm.post.description },
+                  domProps: { value: _vm.description },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.post, "description", $event.target.value)
+                      _vm.description = $event.target.value
                     }
                   }
                 })
               ]),
-              _vm._v(" "),
-              _vm.post.image_url
-                ? _c("div", { staticClass: "col-md-3" }, [
-                    _c("img", {
-                      staticClass: "img-responsive",
-                      attrs: {
-                        src: _vm.post.image_url,
-                        height: "70",
-                        width: "90"
-                      }
-                    })
-                  ])
-                : _vm._e(),
               _vm._v(" "),
               _vm.editing
                 ? _c(

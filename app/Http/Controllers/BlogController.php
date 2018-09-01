@@ -34,7 +34,16 @@ class BlogController extends Controller
         $post->count = $post->count + 1;
         $post->save();
 
-        return view('blog.post')->with('post', $post);
+        $next_id = post::where('id', '>', $post->id )->min('id');
+        $prev_id = post::where('id', '<', $post->id)->max('id'); 
+
+        $next_id = post::find($next_id);
+        $prev_id = post::find($prev_id);
+
+
+        return view('blog.post')->with('post', $post)
+        ->with('next', $next_id)
+        ->with('prev', $prev_id);
     }
 
     public function commentPost(Request $request)

@@ -27,7 +27,7 @@
     @foreach($toppost as $t)
     <a class="media text-default align-items-center mb-5" href="{{ route('blog.post', ['slug' => $t->slug]) }}">
       <img class="rounded w-65px mr-4" src="{{ asset('storage/series/' . $t->image_url) }}">
-      <div class="media-body small-2 lh-4 mb-0">{!! mb_substr($t->content,0,50) !!}</div>
+      <div class="media-body small-2 lh-4 mb-0">{!! mb_substr($t->description,0,50) !!}</div>
     </a>
 @endforeach
     

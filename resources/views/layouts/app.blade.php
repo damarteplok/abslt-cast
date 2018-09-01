@@ -76,6 +76,13 @@
                   </nav>
                 </li>
 
+                <li class="nav-item">
+                  <a class="nav-link" href="#">PortFolio <span class="arrow"></span></a>
+                  <nav class="nav">
+                    <a class="nav-link" href="{{ route('portfolio.index') }}">Index</a>
+                  </nav>
+                </li>
+
               </ul>
             </li>
 
@@ -147,10 +154,7 @@
 
               <div class="col-md-9">
                 <div class="nav nav-bold nav-uppercase justify-content-center justify-content-md-end">
-                  <a class="nav-link" href="#">About</a>
-                  
-                  
-                  
+                  <a class="nav-link" href="/portfolio">About</a>                  
                   <a class="nav-link" href="/terms">Terms</a>
                   <a class="nav-link" href="/contact">Contact</a>
                 </div>
