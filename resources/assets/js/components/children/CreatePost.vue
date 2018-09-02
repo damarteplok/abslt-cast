@@ -10,9 +10,7 @@
             </button>
             
               <h4 class="mb-5">Create New Post</h4>
-
-
-              
+ 
               <div class="form-group">
                 <input class="form-control" type="text" v-model="title" placeholder="Title">
               </div>
@@ -37,29 +35,22 @@
               	</select>
               </div>
 
-
 			  <div class="d-flex flex-wrap">              
 	              <div class="checkbox" v-for="t in tags">
 	              	<label><input type="checkbox" v-bind:value="t.id" v-model="tag">{{ t.tag }}</label>
 	              </div>
           	  </div>
 			  
-              
-             
+                  
               <div class="form-group">
               	<textarea cols="30" rows="10" class="form-control" v-model="description"></textarea>
               </div>
-
               
-
-              
-
               <button class="btn btn-lg btn-block btn-primary" type="button" @click="updatePost()" v-if="editing">Save Post</button>
 
               <button class="btn btn-lg btn-block btn-primary" type="button" @click="createPost()" v-else>Create Post</button>
 
               <hr>
-
               
           </div>
 

@@ -9,7 +9,6 @@ use Absltcast\Portfolio;
 
 class FrontendController extends Controller
 {
-    //
 
     public function welcome()
     {

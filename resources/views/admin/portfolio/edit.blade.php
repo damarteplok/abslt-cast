@@ -28,6 +28,7 @@
     <div class="card-body">
       <form action="{{ route('portfolio.update', ['id' => $portfolio->id]) }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
+        {{ method_field('PUT') }}
 
         <div class="form-group">
           <label for="title">Title</label>

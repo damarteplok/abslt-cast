@@ -44,7 +44,6 @@ class CreatePostRequest extends FormRequest
        {
           $image = $this->get('image_url');
           $name = time() . '-' . str_slug($this->title).'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-
           Image::make($this->get('image_url'))->save(storage_path('app/public/series/').$name);
         }
 

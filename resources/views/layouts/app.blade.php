@@ -107,8 +107,6 @@
           </ul>
         </section>
 
-        
-
         @if(auth()->check())
         <a href="/logout" class="btn btn-xs btn-round btn-outline-primary">{{ auth()->user()->name }}</a>
         
@@ -123,67 +121,58 @@
         
         
             
-        <!-- Header -->
-        @yield('header')
-        <!-- END Header -->
+    <!-- Header -->
+    @yield('header')
+    <!-- END Header -->
 
-        <main class="main-content">
-            
-           
-
-            @yield('content')
-            
-        </main>
-    
-
+    <main class="main-content">
         
+        @yield('content')
+        
+    </main>
 
-        @if(!auth()->check())
-            <vue-login></vue-login>
-        @endif
+    @if(!auth()->check())
+        <vue-login></vue-login>
+    @endif
 
+    <!-- Footer -->
+    <footer class="footer bg-gray">
+      <div class="container">
+        <div class="row gap-y align-items-center">
 
-        <!-- Footer -->
-        <footer class="footer bg-gray">
-          <div class="container">
-            <div class="row gap-y align-items-center">
+          <div class="col-md-3 text-center text-md-left">
+            
+          </div>
 
-              <div class="col-md-3 text-center text-md-left">
-                
-              </div>
-
-              <div class="col-md-9">
-                <div class="nav nav-bold nav-uppercase justify-content-center justify-content-md-end">
-                  <a class="nav-link" href="/portfolio">About</a>                  
-                  <a class="nav-link" href="/terms">Terms</a>
-                  <a class="nav-link" href="/contact">Contact</a>
-                </div>
-              </div>
-              
-
-
-              <div class="col-12">
-                <hr class="my-0">
-              </div>
-
-
-              <div class="col-md-5 text-center text-md-left">
-                <small>© 2018 Abslt-cast. All rights reserved.</small>
-              </div>
-
-              <div class="col-md-7 text-center text-md-right">
-                <div class="social social-sm social-hover-bg-brand">
-                  <a class="social-facebook" href="https://www.facebook.com/damar.huda" target="_blank"><i class="fa fa-facebook"></i></a>
-                  <a class="social-twitter" href="https://github.com/damarteplok" target="_blank"><i class="fa fa-github"></i></a>
-                  <a class="social-instagram" href="https://www.instagram.com/fardall/" target="_blank"><i class="fa fa-instagram"></i></a>
-                </div>
-              </div>
-
+          <div class="col-md-9">
+            <div class="nav nav-bold nav-uppercase justify-content-center justify-content-md-end">
+              <a class="nav-link" href="/portfolio">About</a>                  
+              <a class="nav-link" href="/terms">Terms</a>
+              <a class="nav-link" href="/contact">Contact</a>
             </div>
           </div>
-        </footer><!-- /.footer -->
+          
+          <div class="col-12">
+            <hr class="my-0">
+          </div>
 
-        <button class="btn btn-circle btn-primary scroll-top"><i class="fa fa-angle-up"></i></button>
+          <div class="col-md-5 text-center text-md-left">
+            <small>© 2018 Abslt-cast. All rights reserved.</small>
+          </div>
+
+          <div class="col-md-7 text-center text-md-right">
+            <div class="social social-sm social-hover-bg-brand">
+              <a class="social-facebook" href="https://www.facebook.com/damar.huda" target="_blank"><i class="fa fa-facebook"></i></a>
+              <a class="social-twitter" href="https://github.com/damarteplok" target="_blank"><i class="fa fa-github"></i></a>
+              <a class="social-instagram" href="https://www.instagram.com/fardall/" target="_blank"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer><!-- /.footer -->
+
+    <button class="btn btn-circle btn-primary scroll-top"><i class="fa fa-angle-up"></i></button>
 
     </div>
 

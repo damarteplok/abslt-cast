@@ -27,7 +27,7 @@
 
   <div class="row">
     <div class="col-md-8 mb-6 mb-md-0">
-      <img src="{{ asset($portfolio->featured) }}" alt="project image">
+      <img src="{{ asset('/storage/' . $portfolio->featured) }}" alt="project image">
       
       <div class="mt-5">
       	
@@ -35,8 +35,8 @@
 
 		    @foreach($portfolio->galleries as $s)
 		    
-		      <a href="{{ asset($s->filename) }}" data-provide="lightbox">
-		        <img src="{{ asset($s->filename) }}" alt="...">
+		      <a href="{{ asset('/storage/' . $s->filename) }}" data-provide="lightbox">
+		        <img src="{{ asset('/storage/' . $s->filename) }}" alt="...">
 		      </a>
 
 		    @endforeach
@@ -99,7 +99,7 @@
 	@foreach($portfolios as $p)
       <div class="col-6 col-lg-3" data-shuffle="item">
         <a class="portfolio-1" href="{{ route('portfolio.single', ['slug' => $p->slug]) }}">
-          <img src="{{ asset($p->featured) }}" alt="screenshot">
+          <img src="{{ asset('/storage/' . $p->featured) }}" alt="screenshot">
           <div class="portfolio-detail">
             <h5>{{ $p->title }}</h5>
             <p>{{ $p->skill }}</p>

@@ -48,9 +48,9 @@ class UpdatePostRequest extends FormRequest
           Image::make($this->get('image_url'))->save(storage_path('app/public/series/').$name);
           $image= post::find($id);
 
-           $image->image_url = $name;
+          $image->image_url = $name;
          
-           $image->save();  
+          $image->save();  
         }
 
        

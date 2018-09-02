@@ -32,17 +32,16 @@ class GalleryPortfolioController extends Controller
         {
             $photo_new_name = time().$photo->getClientOriginalName();
 
-            $photo->move('uploads/galleryPortfolio', $photo_new_name);
+            $photo->move(storage_path('app/public/galleryPortfolios'), $photo_new_name);
 
             
             GalleryPortfolio::create([
                 'portfolio_id' => $request->portfolio_id,
-                'filename' => 'uploads/galleryPortfolio/' . $photo_new_name,
+                'filename' => 'galleryPortfolios/' . $photo_new_name,
             ]);
         }
 
         return redirect()->route('galleryportfolio.list', ['id' => $request->portfolio_id]);
-
         
     }
 

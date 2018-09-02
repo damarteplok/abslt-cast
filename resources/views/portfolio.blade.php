@@ -39,12 +39,11 @@
       </li>
     </ul>
 
-
     <div class="row gap-y gap-2" data-shuffle="list">
 	@foreach($portfolios as $p)
       <div class="col-6 col-lg-3" data-shuffle="item">
         <a class="portfolio-1" href="{{ route('portfolio.single', ['slug' => $p->slug]) }}">
-          <img src="{{ asset($p->featured) }}" alt="screenshot">
+          <img src="{{ asset('/storage/' . $p->featured) }}" alt="screenshot">
           <div class="portfolio-detail">
             <h5>{{ $p->title }}</h5>
             <p>{{ $p->skill }}</p>
