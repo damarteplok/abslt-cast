@@ -17,6 +17,9 @@ class FrontendController extends Controller
     }
     public function series(Series $series)
     {
+        $series->count = $series->count + 1;
+        $series->save();
+        
     	return view('series')->withSeries($series);
     }
 
@@ -63,7 +66,7 @@ class FrontendController extends Controller
 
         }elseif($key == 'popular' && $search == 'Search'){
 
-            $data = Series::orderBy('id')->paginate(5);
+            $data = Series::orderBy('count', 'desc')->paginate(5);
             return response()->json($data);
 
         }elseif($key == 'top' && $search == 'Search'){
@@ -73,7 +76,7 @@ class FrontendController extends Controller
 
         }elseif($key == 'popular' && $search != 'Search')
         {
-            $data = Series::orderBy('id')->where('title', 'like', '%' .$search . '%')->paginate(5);
+            $data = Series::orderBy('count', 'desc')->where('title', 'like', '%' .$search . '%')->paginate(5);
             return response()->json($data);
 
         }elseif($key == 'top' && $search != 'Search')
