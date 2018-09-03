@@ -29,6 +29,8 @@ window.handleErrors = function(error) {
 	})
 }
 
+Vue.use(require('vue-resource'));
+
 
 
 /**
@@ -55,6 +57,9 @@ Vue.component('vue-message', require('./components/Message.vue'))
 
 Vue.component('vue-comment', require('./components/Comment.vue'))
 
+Vue.component('vue-course', require('./components/Course.vue'))
+
+Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
 const app = new Vue({
     el: '#app'

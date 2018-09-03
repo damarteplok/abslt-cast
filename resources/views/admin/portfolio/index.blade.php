@@ -51,11 +51,12 @@
 
 			  	@foreach($portfolios as $p)
 			    
-			   
+
 			    <tr>
 			    
 			    	<td>
-			    		<a href="{{ route('galleryportfolio.list', ['id' => $p->id]) }}">
+			    		<a href="{{ route('galleryportfolio.list', 
+			    		['id' => $p->id]) }}">
 			    		{{ $p->title }}</a>
 			    	</td>
 			    	

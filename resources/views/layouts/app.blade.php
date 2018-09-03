@@ -99,7 +99,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Course </a>
+              <a class="nav-link" href="/courses/series">Course </a>
               
             </li>
 

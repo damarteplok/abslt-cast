@@ -33,3 +33,8 @@ Route::get('/portfolio/{slug}', 'FrontendController@portfolioSingle')->name('por
 Route::get('/series/{series}', 'FrontendController@series')->name('series');
 Route::get('/watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
 Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
+
+
+Route::get('course/{key}/{search}', 'FrontendController@courseIndex');
+
+Route::get('/courses/series', 'FrontendController@course');

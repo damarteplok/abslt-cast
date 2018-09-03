@@ -19,7 +19,8 @@ class FrontendController extends Controller
     {
     	return view('series')->withSeries($series);
     }
-     public function terms()
+
+    public function terms()
     {
         return view('terms');
     }
@@ -44,6 +45,44 @@ class FrontendController extends Controller
         ]);
         return response()->json(['status' => 'ok'], 200);
     }
+    public function course()
+    {
+        return view('course');
+    }
+    public function courseIndex($key, $search)
+    {
+        if($key == 'latest' && $search == 'Search')
+        {
+            $data = Series::orderBy('id')->paginate(5);
+            return response()->json($data);
+
+        }elseif($key == 'latest' && $search != 'Search')
+        {
+            $data = Series::orderBy('id')->where('title', 'like', '%' .$search . '%')->paginate(5);
+            return response()->json($data);
+
+        }elseif($key == 'popular' && $search == 'Search'){
+
+            $data = Series::orderBy('id')->paginate(5);
+            return response()->json($data);
+
+        }elseif($key == 'top' && $search == 'Search'){
+            
+            $data = Series::orderBy('id')->paginate(5);
+            return response()->json($data);
+
+        }elseif($key == 'popular' && $search != 'Search')
+        {
+            $data = Series::orderBy('id')->where('title', 'like', '%' .$search . '%')->paginate(5);
+            return response()->json($data);
+
+        }elseif($key == 'top' && $search != 'Search')
+        {
+            $data = Series::orderBy('id')->where('title', 'like', '%' .$search . '%')->paginate(5);
+            return response()->json($data);
+        }
+        
+    }
     public function portfolioListing()
     {
         return view('portfolio')->with('portfolios', Portfolio::all());
@@ -54,4 +93,6 @@ class FrontendController extends Controller
         return view ('portfolio-single')->with('portfolio', $p)
         ->with('portfolios', Portfolio::orderBy('created_at', 'desc')->take(4)->get());
     }
+
+
 }
