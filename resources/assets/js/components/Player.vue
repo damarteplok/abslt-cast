@@ -13,16 +13,39 @@
 
 
 <script>
+import Axios from 'axios'
+
+import Swal from 'sweetalert'
 
 import Player from '@vimeo/player'
 	
 export default {
 	
-	props:['default_lesson'],
+	props:['default_lesson', 'next_lesson_url'],
 
 	data() {
 		return {
 			lesson: JSON.parse(this.default_lesson)
+		}
+	},
+
+	methods: {
+		displayVideoEndedAlert() {
+			if(this.next_lesson_url) {
+				Swal('Yayy ! You completed this Lesson !')
+				.then(()=> {
+					window.location = this.next_lesson_url
+				})
+			} else {
+				Swal('Yayy ! You completed this Series !')
+			}
+			
+		},
+		completeLesson() {
+			Axios.post(`/series/complete-lesson/${this.lesson.id}`, {})
+			.then(resp => {
+				this.displayVideoEndedAlert()
+			})
 		}
 	},
 
@@ -33,6 +56,10 @@ export default {
 
 		player.on('play', () => {
 			console.log('our video playing')
+		})
+
+		player.on('ended', () => {
+			this.completeLesson()
 		})
 	}
 }

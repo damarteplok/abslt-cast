@@ -2,16 +2,15 @@
 
 namespace Absltcast\Http\Controllers;
 
+
 use Absltcast\Series;
 use Absltcast\Lesson;
 use Illuminate\Http\Request;
 
 class WatchSeriesController extends Controller
 {
-    //
     public function index(Series $series)
-    {
-        
+    {   
         if($series->lessons->first() == null)
         {
             return redirect()->back();
@@ -26,13 +25,17 @@ class WatchSeriesController extends Controller
 
     public function showLesson(Series $series, Lesson $lesson)
     {
-        
-
         return view('watch',[
-
             'series' => $series,
             'lesson' => $lesson
+        ]);
+    }
 
+    public function completeLesson(Lesson $lesson)
+    {
+        auth()->user()->completeLesson($lesson);
+        return response()->json([
+            'status' =>'ok'
         ]);
     }
 }

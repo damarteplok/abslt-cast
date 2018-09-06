@@ -5,12 +5,13 @@ namespace Absltcast\Entities;
 
 use Redis;
 use Absltcast\Lesson;
+use Absltcast\Series;
 
 trait Learning {
 
 	public function completeLesson($lesson)
     {
-        Redis::sadd("user:{$this->id}:series:($lesson->series->id)", $lesson->id);
+        Redis::sadd("user:{$this->id}:series:{$lesson->series->id}", $lesson->id);
     }
 
     public function percentageCompletedForSeries($series)
@@ -32,13 +33,11 @@ trait Learning {
     	return Redis::smembers("user:{$this->id}:series:{$series->id}");
     }
 
-
     public function hasStartedSeries($series)
 
     {
     	return $this->getNumberOfCompletedLessonsForASeries($series) > 0;
     }
-
 
     public function getCompletedLessons($series)
     {
@@ -47,6 +46,31 @@ trait Learning {
     	return collect($completedLessons)->map(function($lessonId) {
     		return Lesson::find($lessonId);
     	});
+    }
+
+    public function hasCompletedLesson($lesson)
+    {
+        return in_array(
+            $lesson->id,
+            $this->getCompletedLessonsForASeries($lesson->series)
+
+        );
+    }
+
+    public function seriesBeingWatched()
+    {
+        $keys = Redis::keys("user:{$this->id}:series:*");
+        $seriesIds = [];
+        foreach();
+            $seriesId = explode(':', $key)[3];
+            array_push($seriesIds, $seriesId);
+        endforeach;
+
+        $seriesCollection = collect($seriesIds);
+        return $seriesCollection->map(function($id){
+            return Series::find($id);
+        })
+
     }
 
 }

@@ -11,6 +11,12 @@
 |
 */
 
+// Route::get('/redis', function() {
+// 	Redis::sadd("user:{2}:series:{1}", 1);
+// 	dd(Redis::smembers('user:{2}:series:{1}'));
+
+// });
+
 Auth::routes();
 
 Route::get('/register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
@@ -38,3 +44,5 @@ Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson
 Route::get('course/{key}/{search}', 'FrontendController@courseIndex');
 
 Route::get('/courses/series', 'FrontendController@course');
+
+Route::post('/series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson');
