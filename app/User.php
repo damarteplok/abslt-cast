@@ -3,6 +3,8 @@
 namespace Absltcast;
 
 use Redis;
+
+use Laravel\Cashier\Billable;
 use Absltcast\Entities\Learning;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Learning;
+    use Notifiable, Learning, Billable;
 
     /**
      * The attributes that are mass assignable.

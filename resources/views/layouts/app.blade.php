@@ -13,6 +13,7 @@
     <link href="{{ asset('assets/css/page.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     @yield('css')
+    @yield('scripts')
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">

@@ -61,6 +61,11 @@ Vue.component('vue-course', require('./components/Course.vue'))
 
 Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
+Vue.component('vue-stripe', require('./components/Stripe.vue'))
+
+
+
+
 const app = new Vue({
     el: '#app'
 });

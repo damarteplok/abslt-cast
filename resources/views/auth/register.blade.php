@@ -25,10 +25,12 @@
     <meta name="twitter:card" content="summary_large_image">
   </head>
 
-  <body>
+ 
+  
 
-    <body class="layout-centered bg-img" style="background-image: url(../assets/img/bg/4.jpg);">
 
+  <body class="layout-centered bg-img" style="background-image: url(../assets/img/bg/4.jpg);">
+  
 
     <!-- Main Content -->
     <main class="main-content">
@@ -81,9 +83,6 @@
 
     <script src="{{ asset('assets/js/page.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
-
-    <script src="{{ asset('js/app.js') }}"></script>
-
 
   </body>
 </html>

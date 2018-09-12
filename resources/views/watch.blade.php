@@ -30,7 +30,7 @@
 			<div class="col-12">
 				<vue-player default_lesson="{{ $lesson }}" 
 				
-				@if($nextLesson)
+				@if($nextLesson->id !== $lesson->id)
 
 				next_lesson_url="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $nextLesson->id]) }}"
 
@@ -40,7 +40,7 @@
 				
 				<div class="row my-3">
 					<div class="mr-auto">
-						@if($prevLesson)
+						@if($prevLesson->id !== $lesson->id)
 
 							<a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $prevLesson->id]) }}" class="btn btn-info">Prev Lesson</a>
 
@@ -48,7 +48,7 @@
 					</div>
 
 					<div class="ml-auto">
-						@if($nextLesson)
+						@if($nextLesson->id !== $lesson->id)
 
 							<a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $nextLesson->id]) }}" class="btn btn-info">Next Lesson</a>
 

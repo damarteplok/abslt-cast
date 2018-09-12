@@ -58,7 +58,7 @@
 		<div class="row gap-y">
 			<div class="col-12 offset-md-2 col-md-8 mb-30">
 				<p class="text-center">
-					Course Description
+					{{ $series->description }}
 				</p>
 			</div>
 		</div>
