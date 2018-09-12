@@ -54,37 +54,44 @@
             </li>
 
             @auth
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Admin <span class="arrow"></span></a>
-              <ul class="nav">
-      
+              @admin
+                
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Blog <span class="arrow"></span></a>
-                  <nav class="nav">
-                    <a class="nav-link" href="{{ route('category.index') }}">Category</a>
-                    <a class="nav-link" href="{{ route('tag.index') }}">Tag</a>
-                    <a class="nav-link" href="{{ route('post.index') }}">Post</a>
-                  </nav>
+                  <a class="nav-link" href="#">Admin <span class="arrow"></span></a>
+                  <ul class="nav">
+          
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Blog <span class="arrow"></span></a>
+                      <nav class="nav">
+                        <a class="nav-link" href="{{ route('category.index') }}">Category</a>
+                        <a class="nav-link" href="{{ route('tag.index') }}">Tag</a>
+                        <a class="nav-link" href="{{ route('post.index') }}">Post</a>
+                      </nav>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Cast <span class="arrow"></span></a>
+                      <nav class="nav">
+                        <a class="nav-link" href="{{ route('series.index') }}">Series</a>
+                        <a class="nav-link" href="{{ route('series.create') }}">New Series</a>
+                      </nav>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">PortFolio <span class="arrow"></span></a>
+                      <nav class="nav">
+                        <a class="nav-link" href="{{ route('portfolio.index') }}">Index</a>
+                      </nav>
+                    </li>
+
+                  </ul>
                 </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Cast <span class="arrow"></span></a>
-                  <nav class="nav">
-                    <a class="nav-link" href="{{ route('series.index') }}">Series</a>
-                    <a class="nav-link" href="{{ route('series.create') }}">New Series</a>
-                  </nav>
-                </li>
+              @else
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#">PortFolio <span class="arrow"></span></a>
-                  <nav class="nav">
-                    <a class="nav-link" href="{{ route('portfolio.index') }}">Index</a>
-                  </nav>
-                </li>
+              @endadmin
 
-              </ul>
-            </li>
+            
 
             @endauth
 

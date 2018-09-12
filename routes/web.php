@@ -37,12 +37,21 @@ Route::get('/portfolio', 'FrontendController@portfolioListing');
 Route::get('/portfolio/{slug}', 'FrontendController@portfolioSingle')->name('portfolio.single');
 
 Route::get('/series/{series}', 'FrontendController@series')->name('series');
-Route::get('/watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
-Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
+
+
 
 
 Route::get('course/{key}/{search}', 'FrontendController@courseIndex');
 
 Route::get('/courses/series', 'FrontendController@course');
 
-Route::post('/series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson');
+
+
+Route::get('/profile/{user}', 'ProfilesController@index');
+
+
+Route::middleware('auth')->group(function() {
+	Route::post('/series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson');
+	Route::get('/watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
+	Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
+});
