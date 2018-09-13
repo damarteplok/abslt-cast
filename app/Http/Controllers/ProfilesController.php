@@ -67,4 +67,24 @@ class ProfilesController extends Controller
 
     	
     }
+
+    public function updateCard()
+    {
+    	$this->validate(request(), [
+
+    		'stripeToken' => 'required'
+
+    	]);
+
+    	\Stripe\Stripe::setApiKey('sk_test_UsC6i1sxwf2ECe34AmrGJUAJ');
+		
+		$token = request('stripeToken');
+		$user = auth()->user();
+
+		$user->updateCard($token);
+
+		return response()->json('ok');
+    }
 }
+
+

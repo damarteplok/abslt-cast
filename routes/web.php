@@ -38,7 +38,7 @@ Route::get('/portfolio/{slug}', 'FrontendController@portfolioSingle')->name('por
 Route::get('/series/{series}', 'FrontendController@series')->name('series');
 Route::get('course/{key}/{search}', 'FrontendController@courseIndex');
 Route::get('/courses/series', 'FrontendController@course');
-
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile');
 
 
 Route::middleware('auth')->group(function() {
@@ -50,35 +50,16 @@ Route::middleware('auth')->group(function() {
 
 	Route::post('/subscribe', 'SubscriptionsController@subscribe');
 
-	Route::get('/profile/{user}', 'ProfilesController@index')->name('profile');
+	
 
 	Route::put('/profile/update/{user}', 'ProfilesController@updatePersonal')->name('profile.update');
 
 	Route::post('/subscription/change', 'SubscriptionsController@change')->name('subscription.change');
 
-	Route::post('/card/update', function() {
-		\Stripe\Stripe::setApiKey('sk_test_UsC6i1sxwf2ECe34AmrGJUAJ');
-		
-		$token = request('stripeToken');
-		$user = auth()->user();
+	Route::post('/card/update', 'ProfilesController@updateCard');
 
-		$user->updateCard($token);
-
-		return response()->json('ok');
-	});
 
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -92,8 +73,6 @@ Route::get('/login/github/callback', function() {
 
 	$data = Socialite::with('github')->user();
 	$user = Absltcast\User::where('email', $data->email)->first();
-
-
 
 	if(!is_null($user)){
 		Auth::login($user);

@@ -17,6 +17,8 @@
 
 @section('content')
 
+@if(! auth()->user())
+
 <section class="section" id="section-content">
 
 	<div class="container">
@@ -48,6 +50,40 @@
 	
 </section>
 
+@elseif(auth()->user()->id === $user->id)
+
+
+
+<section class="section" id="section-content">
+
+	<div class="container">
+		<header class="section-header">
+			<h2>Series being watched...</h2>
+			<hr>
+		</header>
+		<div class="row gap-y">
+			<div class="col-12 offset-md-2 col-md-8 mb-30">
+				@foreach($series as $s)
+    
+			      <div class="card overflow-hidden">
+			        <div class="card-body">
+			          <h5 class="card-title" style="color: #000;">{{ $s->title }}</h5>
+			          <p style="color: #000;">{{ $s->description }}</p>
+			        </div>
+
+			        <a class="card-hover bg-img" href="{{ route('series', ['series' => $s->slug]) }}" data-animation="slide-left" style="background-image: url({{ asset('storage/' . $s->image_url) }});">
+			        </a>
+			      </div>
+
+			    @endforeach
+
+
+			</div>
+		</div>
+
+	</div>
+	
+</section>
 
 <section class="section bg-gray">
 	<div class="container">
@@ -82,14 +118,36 @@
 
 	      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 	      
-	      <vue-subscribe data="{{ auth()->user()->subscriptions->first()->stripe_plan }}"></vue-subscribe>
+	      <vue-subscribe 
+	      
+	      data=
+		  @if(auth()->user()->subscriptions->first())
+	      "{{ auth()->user()->subscriptions->first()->stripe_plan }}"
+
+		  @else
+		  "no"
+
+		  @endif
+
+
+
+	      ></vue-subscribe>
 
 	      </div>
 	      
 
 	      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 	      	
-		  <vue-card cardbrand="{{ auth()->user()->card_brand }}" cardlast="{{ auth()->user()->card_last_four }}" emails={{ auth()->user()->email }}></vue-card>
+		  <vue-card 
+
+		@if(auth()->user()->card_brand)
+		  cardbrand="{{ auth()->user()->card_brand }}" cardlast="{{ auth()->user()->card_last_four }}" emails={{ auth()->user()->email }}
+		@else
+		  cardbrand="didnt have" cardlast="yet" emails={{ auth()->user()->email }}
+		
+		@endif
+
+		  ></vue-card>
 
 	      </div>
 	      
@@ -99,6 +157,8 @@
 	</div>
 
 </section>
+
+@endif
 
 @endsection
 
