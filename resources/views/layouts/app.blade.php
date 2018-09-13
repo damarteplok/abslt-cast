@@ -111,13 +111,20 @@
               
             </li>
 
+            @if(auth()->check())
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="{{ route('logout') }}">Logout </a>
+              
+            </li>
+            @endif
+
 
           </ul>
         </section>
 
         @if(auth()->check())
-        <a href="/logout" class="btn btn-xs btn-round btn-outline-primary">{{ auth()->user()->name }}</a>
-        
+        <a href="{{ route('profile', ['user' => auth()->user()->username]) }}" class="btn btn-xs btn-round btn-outline-primary">{{ auth()->user()->name }}</a>
+ 
         @else
         <a class="btn btn-xs btn-round btn-success" href="#" data-toggle="modal" data-target="#LoginModal">Sign In</a>
         @endif

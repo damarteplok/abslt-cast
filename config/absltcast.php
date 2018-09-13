@@ -5,7 +5,7 @@ return [
 
 	'administrators' => [
 
-		'damarhuda@live.com'
+		'mie.yaminasin@gmail.com'
 
 	]
 

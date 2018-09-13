@@ -47,7 +47,7 @@
 
           <div class="divider">Or sign in with</div>
           <div class="text-center">
-            <a class="btn btn-primary btn-block" href="#">github</a>
+            <a class="btn btn-primary btn-block" href="/login/github">github</a>
             
           </div>
 

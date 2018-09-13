@@ -51,13 +51,6 @@
         </div>
       </section>
 
-<!-- 	<div class="d-flex justify-content-center">
-
-		<button class="btn btn-success mx-1" @click="subscribe('monthly')">Subscribe to $10.00 Monthly</button>
-
-		<button class="btn btn-info mx-1" @click="subscribe('yearly')">Subscribe to $100.00 Yearly</button>
-		
-	</div> -->
 
 </div>
 
@@ -82,7 +75,7 @@ export default {
 			image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
 			locale: 'auto',
 			token(token) {
-				Swal({text: 'please wait while we subscribe you to a plan ...', buttons:false});
+				Swal({text: 'please wait while we subscribe you to a plan ...', buttons:false, closeOnClickOutside: false});
 
 				Axios.post('/subscribe', {
 					stripeToken: token.id,
@@ -107,6 +100,7 @@ export default {
 			plan:'',
 			amount: 0,
 			handler: null,
+			data: this.emails
 			
 			
 		}
@@ -117,11 +111,13 @@ export default {
 			if(plan == 'monthly') {
 				window.stripePlan = 'monthly'
 				window.stripeIdPlan = 'plan_DaeJ4Ws8aYwghv'
+				
 				this.amount = 1000
 				
 			} else {
 				window.stripePlan = 'yearly'
 				window.stripeIdPlan = 'plan_DaeMKW8TVKvNZD'
+		
 				this.amount = 10000
 				
 				 
@@ -133,7 +129,7 @@ export default {
 				description: 'Absltcast subscriptions',
 				amount: this.amount,
 
-				email: this.emails
+				email: this.data
 				
 
 			})

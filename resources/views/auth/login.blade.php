@@ -60,7 +60,7 @@
 
         <div class="divider">Or Login With</div>
         <div class="text-center mx-auto">
-          <a class="btn btn-circle btn-sm btn-facebook mr-2" href="#"><i class="fa fa-github"></i></a>
+          <a class="btn btn-circle btn-sm btn-facebook mr-2" href="/login/github"><i class="fa fa-github"></i></a>
           
         </div>
 
@@ -77,8 +77,6 @@
 
     <script src="{{ asset('assets/js/page.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
-
-    <script src="{{ asset('js/app.js') }}"></script>
 
   </body>
 </html>

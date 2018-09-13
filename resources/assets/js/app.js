@@ -59,11 +59,13 @@ Vue.component('vue-comment', require('./components/Comment.vue'))
 
 Vue.component('vue-course', require('./components/Course.vue'))
 
-Vue.component('InfiniteLoading', require('vue-infinite-loading'));
+Vue.component('InfiniteLoading', require('vue-infinite-loading'))
 
 Vue.component('vue-stripe', require('./components/Stripe.vue'))
 
+Vue.component('vue-personal', require('./components/Personal.vue'))
 
+Vue.component('vue-subscribe', require('./components/Subscribe.vue'))
 
 
 const app = new Vue({

@@ -56,12 +56,46 @@
 		</header>
 	</div>
 
-	<div class="row gap-y">
-		<div class="col-12 offset-md-2 col-md-8 mb-30">
-			<p class="text-center">
-				Course Description
-			</p>
-		</div>
+
+
+	<div class="container">
+	<div class="row">
+	  <div class="col-4">
+	    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+	      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Personal Details</a>
+	      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Payments &amp; subscriptions</a>
+	      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Card Details</a>
+	     
+	    </div>
+	  </div>
+	  <div class="col-8">
+	    <div class="tab-content" id="v-pills-tabContent">
+	      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+	      
+		  <vue-personal users="{{ $user }}" username="{{ $user->username }}"></vue-personal>
+
+
+
+	      </div>
+	      
+
+
+	      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+	      
+	      <vue-subscribe data="{{ auth()->user()->subscriptions->first()->stripe_plan }}"></vue-subscribe>
+
+	      </div>
+	      
+
+	      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+	      	
+		
+
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
 	</div>
 
 </section>
