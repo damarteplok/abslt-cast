@@ -17,7 +17,7 @@
         @guest
         <a class="btn btn-xl btn-round btn-success px-7 mb-3" href="{{ route('register') }}">Sign up Now</a>
         @endguest
-        <a class="btn btn-xl btn-round btn-outline-danger px-7 mb-3" href="#">Browse Now</a>
+        <a class="btn btn-xl btn-round btn-outline-danger px-7 mb-3" href="{{ route('course') }}">Browse Now</a>
 
       </div>
     </div>

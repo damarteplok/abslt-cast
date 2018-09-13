@@ -37,7 +37,7 @@ Route::get('/portfolio', 'FrontendController@portfolioListing');
 Route::get('/portfolio/{slug}', 'FrontendController@portfolioSingle')->name('portfolio.single');
 Route::get('/series/{series}', 'FrontendController@series')->name('series');
 Route::get('course/{key}/{search}', 'FrontendController@courseIndex');
-Route::get('/courses/series', 'FrontendController@course');
+Route::get('/courses/series', 'FrontendController@course')->name('course');
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile');
 
 

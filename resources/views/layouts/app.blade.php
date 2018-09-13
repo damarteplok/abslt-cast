@@ -102,7 +102,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Forums </a>
+              <a class="nav-link" href="http://absolutharam-forum.herokuapp.com/" target="_blank">Forums </a>
               
             </li>
 
