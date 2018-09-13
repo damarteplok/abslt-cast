@@ -67,6 +67,8 @@ Vue.component('vue-personal', require('./components/Personal.vue'))
 
 Vue.component('vue-subscribe', require('./components/Subscribe.vue'))
 
+Vue.component('vue-card', require('./components/Card.vue'))
+
 
 const app = new Vue({
     el: '#app'

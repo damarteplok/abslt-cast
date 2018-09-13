@@ -14155,6 +14155,8 @@ Vue.component('vue-personal', __webpack_require__(100));
 
 Vue.component('vue-subscribe', __webpack_require__(103));
 
+Vue.component('vue-card', __webpack_require__(106));
+
 var app = new Vue({
 	el: '#app'
 });
@@ -55381,11 +55383,9 @@ var render = function() {
     _c(
       "header",
       {
-        staticClass: "header text-center text-white",
-        staticStyle: {
-          "background-image":
-            "linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%)"
-        }
+        staticClass: "header bg-fixed text-center text-white",
+        staticStyle: { "background-image": "url(../assets/img/bg/6.jpg)" },
+        attrs: { "data-overlay": "5" }
       },
       [
         _c("div", { staticClass: "container" }, [
@@ -55707,6 +55707,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			key: 'pk_test_hCvqvnLwANTRi3QqVBJsjzyZ',
 			image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
 			locale: 'auto',
+			allowRememberMe: false,
 			token: function token(_token) {
 				__WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({ text: 'please wait while we subscribe you to a plan ...', buttons: false, closeOnClickOutside: false });
 
@@ -55726,7 +55727,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			plan: '',
-			amount: 0,
+			amount: '',
 			handler: null,
 			data: this.emails
 
@@ -55752,9 +55753,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 				name: 'Absltcast',
 				description: 'Absltcast subscriptions',
-				amount: this.amount,
 
-				email: this.data
+				email: this.data,
+
+				amount: this.amount
 
 			});
 		}
@@ -56144,7 +56146,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-success",
+              staticClass: "btn btn-block btn-success",
               attrs: { type: "submit", disabled: !_vm.isValidLoginForm },
               on: {
                 click: function($event) {
@@ -56316,9 +56318,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					});
 				}).catch(function (error) {
 					console.log(error);
-					// Swal({text: 'failed updated', icon:'error'}).then(()=> {
-					// 	window.location = '';
-					// });
+					__WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({ text: 'failed updated', icon: 'error' }).then(function () {
+						window.location = '';
+					});
 				});
 			}
 		}
@@ -56390,7 +56392,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-success",
+              staticClass: "btn btn-block btn-success",
               attrs: { type: "submit" },
               on: {
                 click: function($event) {
@@ -56413,6 +56415,196 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-b2742fba", module.exports)
+  }
+}
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(107)
+/* template */
+var __vue_template__ = __webpack_require__(108)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Card.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2e0dd872", Component.options)
+  } else {
+    hotAPI.reload("data-v-2e0dd872", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 107 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['emails', 'cardbrand', 'cardlast'],
+
+	mounted: function mounted() {
+
+		this.handler = StripeCheckout.configure({
+
+			key: 'pk_test_hCvqvnLwANTRi3QqVBJsjzyZ',
+			image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+			locale: 'auto',
+			allowRememberMe: false,
+			token: function token(_token) {
+
+				__WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({ text: 'please wait while we update your card detail ...', buttons: false, closeOnClickOutside: false });
+
+				__WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/card/update', {
+
+					stripeToken: _token.id
+
+				}).then(function (resp) {
+
+					__WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({ text: 'successfully updated', icon: 'success' }).then(function () {
+						window.location = '';
+					});
+				});
+			}
+		});
+	},
+	data: function data() {
+		return {
+
+			handler: null,
+			data: this.emails
+
+		};
+	},
+
+
+	methods: {
+		updateCard: function updateCard() {
+
+			this.handler.open({
+
+				name: 'Absltcast',
+				description: 'Absltcast subscriptions',
+				email: this.data,
+				panelLabel: 'update card detail'
+
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _vm._v(
+        "Your Current Card: " +
+          _vm._s(this.cardbrand) +
+          " " +
+          _vm._s(this.cardlast)
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "text-center" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-block btn-success",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.updateCard()
+                }
+              }
+            },
+            [_vm._v("Change Card")]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2e0dd872", module.exports)
   }
 }
 

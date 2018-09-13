@@ -74,6 +74,7 @@ export default {
 			key: 'pk_test_hCvqvnLwANTRi3QqVBJsjzyZ',
 			image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
 			locale: 'auto',
+			allowRememberMe: false,
 			token(token) {
 				Swal({text: 'please wait while we subscribe you to a plan ...', buttons:false, closeOnClickOutside: false});
 
@@ -98,7 +99,7 @@ export default {
 	data() {
 		return {
 			plan:'',
-			amount: 0,
+			amount: '',
 			handler: null,
 			data: this.emails
 			
@@ -127,9 +128,12 @@ export default {
 
 				name: 'Absltcast',
 				description: 'Absltcast subscriptions',
+				
+				email: this.data,
+
 				amount: this.amount,
 
-				email: this.data
+				
 				
 
 			})

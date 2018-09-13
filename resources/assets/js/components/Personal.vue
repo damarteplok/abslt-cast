@@ -22,7 +22,7 @@
 
 			<div class="form-group">
 				<div class="text-center">
-					<button class="btn btn-success" type="submit" :disabled="!isValidLoginForm" @click.prevent="updatePersonal()">Save</button>
+					<button class="btn btn-block btn-success" type="submit" :disabled="!isValidLoginForm" @click.prevent="updatePersonal()">Save</button>
 				</div>
 			</div>
 

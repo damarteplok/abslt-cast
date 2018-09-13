@@ -17,7 +17,7 @@
 <section class="section" id="section-vtab">
 
 	<div class="container">
-		<vue-stripe emails=" {{ auth()->user()->email }} "></vue-stripe>
+		<vue-stripe emails={{ auth()->user()->email }}></vue-stripe>
 	</div>
 	
 </section>

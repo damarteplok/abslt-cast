@@ -19,7 +19,7 @@
 
 			<div class="form-group">
 				<div class="text-center">
-					<button class="btn btn-success" type="submit" @click.prevent="updatePlan(plan)">Change Plan</button>
+					<button class="btn btn-block btn-success" type="submit" @click.prevent="updatePlan(plan)">Change Plan</button>
 				</div>
 			</div>
 
@@ -97,9 +97,9 @@
 
 					}).catch(error =>{
 						console.log(error)
-						// Swal({text: 'failed updated', icon:'error'}).then(()=> {
-						// 	window.location = '';
-						// });
+						Swal({text: 'failed updated', icon:'error'}).then(()=> {
+							window.location = '';
+						});
 					})	
 				}
 				

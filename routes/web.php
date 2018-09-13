@@ -56,7 +56,16 @@ Route::middleware('auth')->group(function() {
 
 	Route::post('/subscription/change', 'SubscriptionsController@change')->name('subscription.change');
 
+	Route::post('/card/update', function() {
+		\Stripe\Stripe::setApiKey('sk_test_UsC6i1sxwf2ECe34AmrGJUAJ');
+		
+		$token = request('stripeToken');
+		$user = auth()->user();
 
+		$user->updateCard($token);
+
+		return response()->json('ok');
+	});
 
 });
 

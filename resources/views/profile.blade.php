@@ -89,7 +89,7 @@
 
 	      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 	      	
-		
+		  <vue-card cardbrand="{{ auth()->user()->card_brand }}" cardlast="{{ auth()->user()->card_last_four }}" emails={{ auth()->user()->email }}></vue-card>
 
 	      </div>
 	      
@@ -99,5 +99,13 @@
 	</div>
 
 </section>
+
+@endsection
+
+
+@section('scripts')
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
 
 @endsection

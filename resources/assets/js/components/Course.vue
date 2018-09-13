@@ -3,7 +3,7 @@
 <div>
 
 <!-- header -->
-<header class="header text-center text-white" style="background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);">
+<header class="header bg-fixed text-center text-white" style="background-image: url(../assets/img/bg/6.jpg)" data-overlay="5">
   <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto">
