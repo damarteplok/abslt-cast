@@ -43,11 +43,6 @@
 
 			this.$on('tag_updated', (tag)=> {
 
-				window.noty({
-
-					message: 'Tag updated successfully',
-					type: 'success'
-				})
 
 				let lessonIndex = this.tags.findIndex(l => {
 					return tag.id == l.id
