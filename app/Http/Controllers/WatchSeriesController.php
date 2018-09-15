@@ -35,16 +35,35 @@ class WatchSeriesController extends Controller
 
     public function showLesson(Series $series, Lesson $lesson)
     {
+        //dd(is_null(auth()->user()->subscriptions));
+       //$plans = ['plan_DaeJ4Ws8aYwghv', 'plan_DaeMKW8TVKvNZD'];
+        //dd(!auth()->user()->subscribedToPlan('plan_DaeJ4Ws8aYwghv'));
         if($lesson->premium == 1)
         {
-            if(!auth()->user()->subscribedToPlan(['monthly', 'yearly'])) {
+            // if(!auth()->user()->subscribedToPlan(['plan_DaeJ4Ws8aYwghv', 'plan_DaeMKW8TVKvNZD'])) {
+            //     return redirect('subscribe');
+            if(is_null(auth()->user()->subscriptions))
+            {
                 return redirect('subscribe');
-            }else {
+            }
+            //foreach ( $plans as $plan) {
+            if (auth()->user()->subscriptions()->first()->stripe_plan == 'plan_DaeMKW8TVKvNZD' || auth()->user()->subscriptions()->first()->stripe_plan == 'plan_DaeJ4Ws8aYwghv' ) {
                 return view('watch',[
                     'series' => $series,
                     'lesson' => $lesson
-                ]);        
-            }    
+                ]);
+            } 
+                //dd('tes');
+            return redirect('subscribe');
+            //}
+            // if(!auth()->user()->subscribedToPlan(['plan_DaeJ4Ws8aYwghv', 'plan_DaeMKW8TVKvNZD'])) {
+            //     return redirect('subscribe');
+            // }else {
+            //     return view('watch',[
+            //         'series' => $series,
+            //         'lesson' => $lesson
+            //     ]);        
+            // }    
         }
         
         
