@@ -25,7 +25,7 @@
         	@endhasStartedSeries
         @else
 
-        	<a href="" class="btn btn-round btn-primary">start learning</a>
+        	<a href="/login" class="btn btn-round btn-primary">u need to login</a>
 
         @endauth
         
@@ -66,14 +66,5 @@
 	
 </section>
 
-<section class="section bg-gray">
-	<div class="container">
-		<header class="section-header">
-			<h2>Video</h2>
-			<hr>
-			<p class="lead"></p>
-		</header>
-	</div>
-</section>
 
 @stop

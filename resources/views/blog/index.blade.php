@@ -4,7 +4,7 @@
 @section('header')
 
 <!-- Header -->
-<header class="header bg-fixed text-center text-white" style="background-image: url(../assets/img/bg/6.jpg)" data-overlay="5">
+<header class="header bg-fixed text-center text-white" style="background-image: url({{ asset('assets/img/bg/6.jpg') }})" data-overlay="5">
   <div class="container">
 
     <div class="row">

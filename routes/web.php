@@ -35,13 +35,14 @@ Route::get('/terms', 'FrontendController@terms');
 Route::get('/contact', 'FrontendController@contact');
 Route::get('/portfolio', 'FrontendController@portfolioListing');
 Route::get('/portfolio/{slug}', 'FrontendController@portfolioSingle')->name('portfolio.single');
-Route::get('/series/{series}', 'FrontendController@series')->name('series');
+
 Route::get('course/{key}/{search}', 'FrontendController@courseIndex');
 Route::get('/courses/series', 'FrontendController@course')->name('course');
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile');
-
+Route::get('/series/{series}', 'FrontendController@series')->name('series');
 
 Route::middleware('auth')->group(function() {
+	
 	Route::post('/series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson');
 	Route::get('/watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
 	Route::get('/series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
@@ -49,8 +50,6 @@ Route::middleware('auth')->group(function() {
 	Route::get('/subscribe', 'SubscriptionsController@showSubscriptionForm');
 
 	Route::post('/subscribe', 'SubscriptionsController@subscribe');
-
-	
 
 	Route::put('/profile/update/{user}', 'ProfilesController@updatePersonal')->name('profile.update');
 
