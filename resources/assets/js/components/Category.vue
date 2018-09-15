@@ -44,11 +44,6 @@
 
 			this.$on('category_updated', (category)=> {
 
-				window.noty({
-
-					message: 'Category updated successfully',
-					type: 'success'
-				})
 
 				let lessonIndex = this.categories.findIndex(l => {
 					return category.id == l.id
