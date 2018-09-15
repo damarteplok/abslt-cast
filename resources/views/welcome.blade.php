@@ -54,7 +54,7 @@
           @foreach($posts as $p)
 
           <div class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
-            <a class="card shadow-1 hover-shadow-7" href="demo/bootstrap.html" target="_blank">
+            <a class="card shadow-1 hover-shadow-7" href="{{ route('blog.post', ['slug' => $p->slug]) }}" target="_blank">
               <div class="card-img-top">
                 <img src="{{ asset('/storage/series/' . $p->image_url) }}" alt="Card image cap">
                 <div class="badges">
