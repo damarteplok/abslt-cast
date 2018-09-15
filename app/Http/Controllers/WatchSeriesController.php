@@ -35,9 +35,18 @@ class WatchSeriesController extends Controller
 
     public function showLesson(Series $series, Lesson $lesson)
     {
-        if(!auth()->user()->subscribedToPlan(['monthly', 'yearly'])) {
-            return redirect('subscribe');
+        if($lesson->premium == 1)
+        {
+            if(!auth()->user()->subscribedToPlan(['monthly', 'yearly'])) {
+                return redirect('subscribe');
+            }else {
+                return view('watch',[
+                    'series' => $series,
+                    'lesson' => $lesson
+                ]);        
+            }    
         }
+        
         
         return view('watch',[
             'series' => $series,
