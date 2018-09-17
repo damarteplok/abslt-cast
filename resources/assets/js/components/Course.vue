@@ -48,7 +48,7 @@
           <div class="col-md-8">
             <div class="p-7">
               <h4>{{ item.title }}</h4>
-              <p>{{ item.description }}</p>
+              <p>{{  item.description.substr(0,100) }}</p>
               <a class="small ls-1" :href="'/series/'+ item.slug">Read More <span class="pl-1">⟶</span></a>
             </div>
           </div>
