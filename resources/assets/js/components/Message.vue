@@ -102,6 +102,7 @@ export default {
 				this.name =''
 				this.email=''
 				this.message=''
+				this.loading = false
 			}).catch(error=>{
 				this.loading = false
                 if(error.response.status == 422)
