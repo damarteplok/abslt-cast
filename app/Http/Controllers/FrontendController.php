@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Absltcast\Series;
 use Absltcast\post;
 use Absltcast\Portfolio;
+use Absltcast\Contact;
 
 class FrontendController extends Controller
 {
