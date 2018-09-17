@@ -100,7 +100,7 @@
       <div class="card overflow-hidden">
         <div class="card-body">
           <h5 class="card-title" style="color: #000;">{{ $s->title }}</h5>
-          <p style="color: #000;">{{ $s->description }}</p>
+          <p style="color: #000;">{{ mb_substr($s->description,0,100) }}</p>
         </div>
 
         <a class="card-hover bg-img" href="{{ route('series', ['series' => $s->slug]) }}" data-animation="slide-left" style="background-image: url({{ asset('storage/' . $s->image_url) }});">
